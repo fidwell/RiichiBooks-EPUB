@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1"><head><meta name="dtb:uid" content="urn:uuid:64b058b4-94f8-20a6-c056-681213ed32a9"/><meta name="dtb:depth" content="3"/><meta name="dtb:totalPageCount" content="0"/><meta name="dtb:maxPageNumber" content="0"/></head>
+<docTitle><text>Riichi Book I: A Mahjong Strategy Primer for European Players</text></docTitle><navMap>
+<navPoint id="np1" playOrder="1"><navLabel><text>Cover</text></navLabel><content src="cover.xhtml"/></navPoint>
+<navPoint id="np2" playOrder="2"><navLabel><text>Title page and copyright</text></navLabel><content src="titlepage.xhtml"/></navPoint>
+<navPoint id="np3" playOrder="3"><navLabel><text>Preface</text></navLabel><content src="preface.xhtml"/></navPoint>
+<navPoint id="np4" playOrder="4"><navLabel><text>Part I: Playing Riichi Online</text></navLabel><content src="part1.xhtml"/><navPoint id="np5" playOrder="5"><navLabel><text>Chapter 1: Introduction to Tenhou (天鳳)</text></navLabel><content src="chapter01.xhtml"/><navPoint id="np6" playOrder="6"><navLabel><text>Why play online?</text></navLabel><content src="chapter01.xhtml#chapter01-h1"/></navPoint>
+<navPoint id="np7" playOrder="7"><navLabel><text>Setting up an account</text></navLabel><content src="chapter01.xhtml#chapter01-h2"/></navPoint>
+<navPoint id="np8" playOrder="8"><navLabel><text>The main page</text></navLabel><content src="chapter01.xhtml#chapter01-h3"/></navPoint>
+<navPoint id="np9" playOrder="9"><navLabel><text>Playing a game</text></navLabel><content src="chapter01.xhtml#chapter01-h5"/></navPoint>
+<navPoint id="np10" playOrder="10"><navLabel><text>Troubleshooting</text></navLabel><content src="chapter01.xhtml#chapter01-h11"/></navPoint>
+<navPoint id="np11" playOrder="11"><navLabel><text>Rules</text></navLabel><content src="chapter01.xhtml#chapter01-h12"/></navPoint></navPoint>
+<navPoint id="np12" playOrder="12"><navLabel><text>Chapter 2: Advanced features of Tenhou</text></navLabel><content src="chapter02.xhtml"/><navPoint id="np13" playOrder="13"><navLabel><text>Rank and rating</text></navLabel><content src="chapter02.xhtml#chapter02-h1"/></navPoint>
+<navPoint id="np14" playOrder="14"><navLabel><text>Four rooms</text></navLabel><content src="chapter02.xhtml#chapter02-h4"/></navPoint>
+<navPoint id="np15" playOrder="15"><navLabel><text>Reading the statistics</text></navLabel><content src="chapter02.xhtml#chapter02-h9"/></navPoint>
+<navPoint id="np16" playOrder="16"><navLabel><text>Viewing games</text></navLabel><content src="chapter02.xhtml#chapter02-h12"/></navPoint></navPoint></navPoint>
+<navPoint id="np17" playOrder="17"><navLabel><text>Part II: Basic Tile Efficiency</text></navLabel><content src="part2.xhtml"/><navPoint id="np18" playOrder="18"><navLabel><text>Chapter 3: Riichi mahjong basics</text></navLabel><content src="chapter03.xhtml"/><navPoint id="np19" playOrder="19"><navLabel><text>Learning strategies</text></navLabel><content src="chapter03.xhtml#chapter03-h1"/></navPoint>
+<navPoint id="np20" playOrder="20"><navLabel><text>Basic building blocks</text></navLabel><content src="chapter03.xhtml#chapter03-h2"/></navPoint>
+<navPoint id="np21" playOrder="21"><navLabel><text>Complex shapes</text></navLabel><content src="chapter03.xhtml#chapter03-h11"/></navPoint>
+<navPoint id="np22" playOrder="22"><navLabel><text>Waits</text></navLabel><content src="chapter03.xhtml#chapter03-h14"/></navPoint>
+<navPoint id="np23" playOrder="23"><navLabel><text>Glossary</text></navLabel><content src="chapter03.xhtml#chapter03-h15"/></navPoint></navPoint>
+<navPoint id="np24" playOrder="24"><navLabel><text>Chapter 4: The five-block method</text></navLabel><content src="chapter04.xhtml"/><navPoint id="np25" playOrder="25"><navLabel><text>Finding a redundant tile</text></navLabel><content src="chapter04.xhtml#chapter04-h1"/></navPoint>
+<navPoint id="np26" playOrder="26"><navLabel><text>Alternative configurations</text></navLabel><content src="chapter04.xhtml#chapter04-h2"/></navPoint>
+<navPoint id="np27" playOrder="27"><navLabel><text>Selecting tile blocks</text></navLabel><content src="chapter04.xhtml#chapter04-h4"/></navPoint>
+<navPoint id="np28" playOrder="28"><navLabel><text>Building a block</text></navLabel><content src="chapter04.xhtml#chapter04-h6"/></navPoint></navPoint>
+<navPoint id="np29" playOrder="29"><navLabel><text>Chapter 5: Pursuing yaku</text></navLabel><content src="chapter05.xhtml"/><navPoint id="np30" playOrder="30"><navLabel><text>How to get sanshoku</text></navLabel><content src="chapter05.xhtml#chapter05-h1"/></navPoint>
+<navPoint id="np31" playOrder="31"><navLabel><text>How to get ittsu</text></navLabel><content src="chapter05.xhtml#chapter05-h9"/></navPoint>
+<navPoint id="np32" playOrder="32"><navLabel><text>How to get pinfu</text></navLabel><content src="chapter05.xhtml#chapter05-h14"/></navPoint>
+<navPoint id="np33" playOrder="33"><navLabel><text>How to get honitsu</text></navLabel><content src="chapter05.xhtml#chapter05-h15"/></navPoint>
+<navPoint id="np34" playOrder="34"><navLabel><text>How to get toitoi / chiitoitsu</text></navLabel><content src="chapter05.xhtml#chapter05-h19"/></navPoint></navPoint></navPoint>
+<navPoint id="np35" playOrder="35"><navLabel><text>Part III: Strategy Principles</text></navLabel><content src="part3.xhtml"/><navPoint id="np36" playOrder="36"><navLabel><text>Chapter 6: Scoring</text></navLabel><content src="chapter06.xhtml"/><navPoint id="np37" playOrder="37"><navLabel><text>Three steps in score calculation</text></navLabel><content src="chapter06.xhtml#chapter06-h1"/></navPoint>
+<navPoint id="np38" playOrder="38"><navLabel><text>Basic scoring</text></navLabel><content src="chapter06.xhtml#chapter06-h2"/></navPoint>
+<navPoint id="np39" playOrder="39"><navLabel><text>Advanced scoring</text></navLabel><content src="chapter06.xhtml#chapter06-h6"/></navPoint>
+<navPoint id="np40" playOrder="40"><navLabel><text>Scoring tables</text></navLabel><content src="chapter06.xhtml#chapter06-h10"/></navPoint></navPoint>
+<navPoint id="np41" playOrder="41"><navLabel><text>Chapter 7: Riichi judgement</text></navLabel><content src="chapter07.xhtml"/><navPoint id="np42" playOrder="42"><navLabel><text>To riichi or not to riichi?</text></navLabel><content src="chapter07.xhtml#chapter07-h1"/></navPoint>
+<navPoint id="np43" playOrder="43"><navLabel><text>Insta-riichi</text></navLabel><content src="chapter07.xhtml#chapter07-h2"/></navPoint>
+<navPoint id="np44" playOrder="44"><navLabel><text>When not to riichi</text></navLabel><content src="chapter07.xhtml#chapter07-h7"/></navPoint>
+<navPoint id="np45" playOrder="45"><navLabel><text>Glossary</text></navLabel><content src="chapter07.xhtml#chapter07-h13"/></navPoint></navPoint>
+<navPoint id="np46" playOrder="46"><navLabel><text>Chapter 8: Defense judgement</text></navLabel><content src="chapter08.xhtml"/><navPoint id="np47" playOrder="47"><navLabel><text>To push or to fold?</text></navLabel><content src="chapter08.xhtml#chapter08-h1"/></navPoint>
+<navPoint id="np48" playOrder="48"><navLabel><text>Defense basics</text></navLabel><content src="chapter08.xhtml#chapter08-h5"/></navPoint>
+<navPoint id="np49" playOrder="49"><navLabel><text>Defense against riichi</text></navLabel><content src="chapter08.xhtml#chapter08-h10"/></navPoint>
+<navPoint id="np50" playOrder="50"><navLabel><text>Defense against open hands</text></navLabel><content src="chapter08.xhtml#chapter08-h13"/></navPoint>
+<navPoint id="np51" playOrder="51"><navLabel><text>Glossary</text></navLabel><content src="chapter08.xhtml#chapter08-h18"/></navPoint></navPoint>
+<navPoint id="np52" playOrder="52"><navLabel><text>Chapter 9: Melding judgement</text></navLabel><content src="chapter09.xhtml"/><navPoint id="np53" playOrder="53"><navLabel><text>To meld or not to meld?</text></navLabel><content src="chapter09.xhtml#chapter09-h1"/></navPoint>
+<navPoint id="np54" playOrder="54"><navLabel><text>Melding choice: examples</text></navLabel><content src="chapter09.xhtml#chapter09-h4"/></navPoint>
+<navPoint id="np55" playOrder="55"><navLabel><text>Calling kan</text></navLabel><content src="chapter09.xhtml#chapter09-h10"/></navPoint>
+<navPoint id="np56" playOrder="56"><navLabel><text>Miscellaneous tips for melding</text></navLabel><content src="chapter09.xhtml#chapter09-h14"/></navPoint></navPoint>
+<navPoint id="np57" playOrder="57"><navLabel><text>Chapter 10: Grand strategies</text></navLabel><content src="chapter10.xhtml"/><navPoint id="np58" playOrder="58"><navLabel><text>What to do in South-4</text></navLabel><content src="chapter10.xhtml#chapter10-h1"/></navPoint>
+<navPoint id="np59" playOrder="59"><navLabel><text>What to do by South-3</text></navLabel><content src="chapter10.xhtml#chapter10-h5"/></navPoint>
+<navPoint id="np60" playOrder="60"><navLabel><text>Tables for induced point differences</text></navLabel><content src="chapter10.xhtml#chapter10-h6"/></navPoint></navPoint></navPoint>
+<navPoint id="np61" playOrder="61"><navLabel><text>Appendices</text></navLabel><content src="part4.xhtml"/><navPoint id="np62" playOrder="62"><navLabel><text>Appendix A: Manners for offline playing</text></navLabel><content src="appendix1.xhtml"/><navPoint id="np63" playOrder="63"><navLabel><text>Dealing tiles</text></navLabel><content src="appendix1.xhtml#appendix1-h1"/></navPoint>
+<navPoint id="np64" playOrder="64"><navLabel><text>Drawing and discarding</text></navLabel><content src="appendix1.xhtml#appendix1-h11"/></navPoint>
+<navPoint id="np65" playOrder="65"><navLabel><text>Calling</text></navLabel><content src="appendix1.xhtml#appendix1-h18"/></navPoint>
+<navPoint id="np66" playOrder="66"><navLabel><text>Winning a hand</text></navLabel><content src="appendix1.xhtml#appendix1-h23"/></navPoint></navPoint>
+<navPoint id="np67" playOrder="67"><navLabel><text>Appendix B: Further readings</text></navLabel><content src="appendix2.xhtml"/><navPoint id="np68" playOrder="68"><navLabel><text>Books on riichi mahjong</text></navLabel><content src="appendix2.xhtml#appendix2-h1"/></navPoint>
+<navPoint id="np69" playOrder="69"><navLabel><text>Online resources</text></navLabel><content src="appendix2.xhtml#appendix2-h2"/></navPoint></navPoint></navPoint>
+</navMap></ncx>
