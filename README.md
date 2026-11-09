@@ -1,6 +1,6 @@
-# Riichi Book I - Epub version
+# Riichi Book I - EPUB version
 
-This is a conversion of Daina Chiba's [_Riichi Book I_](https://dainachiba.github.io/RiichiBooks/) from PDF to ePub format.
+This is a conversion of Daina Chiba's [_Riichi Book I_](https://dainachiba.github.io/RiichiBooks/) from PDF to EPUB format.
 
 Original LaTeX source can be found at [https://github.com/dainachiba/RiichiBooks](https://github.com/dainachiba/RiichiBooks). This version is based on commit [7f31a9a](https://github.com/dainachiba/RiichiBooks/commit/7f31a9a1875426b03c1db3d838a9b52427ec068c) on August 2, 2026.
 
