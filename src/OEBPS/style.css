@@ -2,79 +2,477 @@
   font-family: "Mahjong Tiles";
   src: url("fonts/NotoSansSymbols2-Regular.ttf");
 }
-body { font-family: serif; line-height: 1.4; margin: 0 4%; text-align: left; }
-h1 { font-size: 1.7em; text-align: left; margin: 1.5em 0 1em; line-height: 1.2; page-break-before: always; }
-h1 .chapnum { display: block; font-size: 0.55em; font-weight: normal; letter-spacing: 0.05em; text-transform: uppercase; }
-h2 { font-size: 1.25em; text-align: center; margin: 1.6em 0 0.8em; page-break-after: avoid; }
-h3 { font-size: 1.05em; margin: 1.3em 0 0.4em; page-break-after: avoid; }
-h4 { font-size: 1em; font-style: italic; margin: 1.1em 0 0.3em; page-break-after: avoid; }
-.secnum { border: 1px solid; padding: 0 0.3em; margin-right: 0.3em; }
-h3 .secnum { border: none; padding: 0; }
-p { margin: 0.6em 0; }
-a { color: #0571b0; text-decoration: none; }
-.noteref { font-size: 0.75em; vertical-align: super; line-height: 0; }
-.jap { font-family: "Courier New", Courier, monospace; font-size: 0.92em; }
-.scshape { font-variant: small-caps; }
-.tiny { font-size: 0.65em; } .scriptsize { font-size: 0.73em; } .footnotesize { font-size: 0.82em; }
-.small { font-size: 0.91em; } .normalsize { font-size: 1em; } .large { font-size: 1.1em; }
-.Large { font-size: 1.3em; } .LARGE { font-size: 1.57em; } .huge { font-size: 1.89em; } .Huge { font-size: 2.26em; }
-.tile { font-family: "Mahjong Tiles", "Segoe UI Symbol", "Noto Sans Symbols 2", sans-serif; font-size: 1.15em; line-height: 1; white-space: nowrap; font-style: normal; font-weight: normal; }
-.tile.red { color: #c00000; }
-.tile.sideways { display: inline-block; position: relative; width: 0.75em; height: 0.6em; }
-.tile.sideways .turned { position: absolute; left: 0.0735em; top: -0.086em; width: 0.603em; height: 1em; transform-origin: 0.3015em 0.386em; transform: rotate(-90deg); }
-.tiles { text-align: center; margin: 0.8em 0; font-size: 2.1em; line-height: 1.25; }
-.tilerow { display: inline-block; text-align: left; max-width: 100%; }
-.tileline { display: block; }
-.tilerow.labelled { padding: 0.55em 0; }
-.tag.above { top: auto; bottom: 82%; }
-.tag.red { color: #bf0000; }
-.tile.tagged { position: relative; }
-.tag { position: absolute; top: 82%; left: 50%; transform: translateX(-50%); font-size: 0.4em; line-height: 1.2; white-space: nowrap; font-family: serif; font-style: normal; }
-.tilelabel { display: block; text-align: right; font-size: 0.5em; line-height: 1.2; font-family: serif; }
-.rotated { display: inline-block; white-space: nowrap; margin: 0.4em 0.2em; }
-.raised { position: relative; }
-.tiles .tile { font-size: 1em; }
-.tiles .large { font-size: 0.48em; } .tiles .Large { font-size: 0.58em; } .tiles .LARGE { font-size: 0.7em; } .tiles .huge { font-size: 0.84em; }
-.tiles .small { font-size: 0.4em; } .tiles .footnotesize { font-size: 0.36em; }
-.tiny .tiny, .scriptsize .scriptsize, .footnotesize .footnotesize, .small .small, .large .large, .Large .Large, .LARGE .LARGE, .huge .huge, .Huge .Huge,
-.tiles .large .large, .tiles .Large .Large, .tiles .LARGE .LARGE, .tiles .huge .huge, .tiles .small .small, .tiles .footnotesize .footnotesize { font-size: 1em; }
-table.grid .Huge, table.grid .LARGE { font-size: 1.45em; }
-.display { text-align: center; margin: 1em 0; }
-.underbrace { display: inline-block; vertical-align: top; text-align: center; margin: 0 0.1em; }
-.ubcontent { display: block; border-bottom: 2px solid; border-radius: 0 0 0.6em 0.6em; padding-bottom: 0.1em; }
-.ublabel { display: block; font-size: 0.6em; }
-.center { text-align: center; }
-.center p { text-align: center; }
-.box { border: 1px solid var(--accent, #555); border-radius: 0.3em; padding: 0.2em 0.8em; margin: 1em 0; }
-.boxtitle { font-weight: bold; margin: 0.4em 0; color: var(--accent, inherit); }
-.float { margin: 1em 0; text-align: center; }
-.sidefloat { float: right; margin: 0.3em 0 0.5em 1em; }
-.minipage { display: inline-block; vertical-align: top; width: 48%; text-align: center; }
-.caption { display: block; font-size: 0.91em; margin: 0.4em 0; }
-table.grid { border-collapse: collapse; margin: 0.8em auto; font-size: 0.95em; }
-table.grid td { padding: 0.15em 0.6em; vertical-align: top; }
-table.grid td p { margin: 0; }
-table.grid.toprule { border-top: 2px solid; }
-table.grid.bottomrule { border-bottom: 2px solid; }
-table.grid tr.rule td { border-bottom: 1px solid; }
-dt { font-weight: bold; margin-top: 0.7em; }
-dd { margin-left: 1.5em; }
-ul, ol { margin: 0.5em 0; padding-left: 1.6em; }
-li { margin: 0.3em 0; }
-blockquote { margin: 0.8em 1.5em; }
-img { vertical-align: middle; }
-.overpic { position: relative; margin: 0 auto; }
-.overpic svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
-.overpic img { display: block; }
-.fbox { border: 1px solid; padding: 0 0.2em; }
-.titlepage { text-align: right; margin: 18% 0 10%; }
-.booktitle { text-align: right; font-size: 2.4em; page-break-before: auto; margin-bottom: 0.2em; }
-.subtitle { font-size: 1.3em; }
-.version { margin-top: 2.5em; font-size: 1.1em; }
-.author { margin-top: 1.5em; font-size: 1.3em; }
-.copyright { font-size: 0.9em; margin-top: 3em; }
-.parttitle { text-align: center; margin: 30% 0 0; }
-.parttitle h1 { text-align: center; page-break-before: auto; font-variant: small-caps; }
-.partnumber { font-size: 1.2em; font-variant: small-caps; margin-bottom: 0; }
-.footnotes { font-size: 0.88em; margin-top: 2em; }
-.footnotes p { margin: 0.3em 0; }
+
+body {
+  font-family: serif;
+  line-height: 1.4;
+  margin: 0 4%;
+  text-align: left;
+}
+
+body.cover {
+  margin: 0;
+  text-align: center;
+}
+
+body.cover img {
+  max-width: 100%;
+  max-height: 100vh;
+}
+
+h1 {
+  font-size: 1.7em;
+  text-align: left;
+  margin: 1.5em 0 1em;
+  line-height: 1.2;
+  page-break-before: always;
+}
+
+h1 .chapnum {
+  display: block;
+  font-size: 0.55em;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1.25em;
+  text-align: center;
+  margin: 1.6em 0 0.8em;
+  page-break-after: avoid;
+}
+
+h3 {
+  font-size: 1.05em;
+  margin: 1.3em 0 0.4em;
+  page-break-after: avoid;
+}
+
+h4 {
+  font-size: 1em;
+  font-style: italic;
+  margin: 1.1em 0 0.3em;
+  page-break-after: avoid;
+}
+
+.secnum {
+  border: 1px solid;
+  padding: 0 0.3em;
+  margin-right: 0.3em;
+}
+
+h3 .secnum {
+  border: none;
+  padding: 0;
+}
+
+p {
+  margin: 0.6em 0;
+}
+
+a {
+  color: #0571b0;
+  text-decoration: none;
+}
+
+.noteref {
+  font-size: 0.75em;
+  vertical-align: super;
+  line-height: 0;
+}
+
+.jap {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.92em;
+}
+
+.scshape {
+  font-variant: small-caps;
+}
+
+.tiny {
+  font-size: 0.65em;
+}
+
+.scriptsize {
+  font-size: 0.73em;
+}
+
+.footnotesize {
+  font-size: 0.82em;
+}
+
+.small {
+  font-size: 0.91em;
+}
+
+.normalsize {
+  font-size: 1em;
+}
+
+.large {
+  font-size: 1.1em;
+}
+
+.Large {
+  font-size: 1.3em;
+}
+
+.LARGE {
+  font-size: 1.57em;
+}
+
+.huge {
+  font-size: 1.89em;
+}
+
+.Huge {
+  font-size: 2.26em;
+}
+
+.tile {
+  font-family: "Mahjong Tiles", "Segoe UI Symbol", "Noto Sans Symbols 2", sans-serif;
+  font-size: 1.15em;
+  line-height: 1;
+  white-space: nowrap;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.tile.red {
+  color: #c00000;
+}
+
+.tile.sideways {
+  display: inline-block;
+  position: relative;
+  width: 0.75em;
+  height: 0.6em;
+}
+
+.tile.sideways .turned {
+  position: absolute;
+  left: 0.0735em;
+  top: -0.086em;
+  width: 0.603em;
+  height: 1em;
+  transform-origin: 0.3015em 0.386em;
+  transform: rotate(-90deg);
+}
+
+.tiles {
+  text-align: center;
+  margin: 0.8em 0;
+  font-size: 2.1em;
+  line-height: 1.25;
+}
+
+.tilerow {
+  display: inline-block;
+  text-align: left;
+  max-width: 100%;
+}
+
+.tileline {
+  display: block;
+}
+
+.tilerow.labelled {
+  padding: 0.55em 0;
+}
+
+.tag.above {
+  top: auto;
+  bottom: 82%;
+}
+
+.tag.red {
+  color: #bf0000;
+}
+
+.tile.tagged {
+  position: relative;
+}
+
+.tag {
+  position: absolute;
+  top: 82%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.4em;
+  line-height: 1.2;
+  white-space: nowrap;
+  font-family: serif;
+  font-style: normal;
+}
+
+.tilelabel {
+  display: block;
+  text-align: right;
+  font-size: 0.5em;
+  line-height: 1.2;
+  font-family: serif;
+}
+
+.rotated {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0.4em 0.2em;
+}
+
+.raised {
+  position: relative;
+}
+
+.tiles .tile {
+  font-size: 1em;
+}
+
+.tiles .large {
+  font-size: 0.48em;
+}
+
+.tiles .Large {
+  font-size: 0.58em;
+}
+
+.tiles .LARGE {
+  font-size: 0.7em;
+}
+
+.tiles .huge {
+  font-size: 0.84em;
+}
+
+.tiles .small {
+  font-size: 0.4em;
+}
+
+.tiles .footnotesize {
+  font-size: 0.36em;
+}
+
+.tiny .tiny,
+.scriptsize .scriptsize,
+.footnotesize .footnotesize,
+.small .small,
+.large .large,
+.Large .Large,
+.LARGE .LARGE,
+.huge .huge,
+.Huge .Huge,
+.tiles .large .large,
+.tiles .Large .Large,
+.tiles .LARGE .LARGE,
+.tiles .huge .huge,
+.tiles .small .small,
+.tiles .footnotesize .footnotesize {
+  font-size: 1em;
+}
+
+table.grid .Huge,
+table.grid .LARGE {
+  font-size: 1.45em;
+}
+
+.display {
+  text-align: center;
+  margin: 1em 0;
+}
+
+.underbrace {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  margin: 0 0.1em;
+}
+
+.ubcontent {
+  display: block;
+  border-bottom: 2px solid;
+  border-radius: 0 0 0.6em 0.6em;
+  padding-bottom: 0.1em;
+}
+
+.ublabel {
+  display: block;
+  font-size: 0.6em;
+}
+
+.center {
+  text-align: center;
+}
+
+.center p {
+  text-align: center;
+}
+
+.box {
+  border: 1px solid var(--accent, #555);
+  border-radius: 0.3em;
+  padding: 0.2em 0.8em;
+  margin: 1em 0;
+}
+
+.boxtitle {
+  font-weight: bold;
+  margin: 0.4em 0;
+  color: var(--accent, inherit);
+}
+
+.float {
+  margin: 1em 0;
+  text-align: center;
+}
+
+.sidefloat {
+  float: right;
+  margin: 0.3em 0 0.5em 1em;
+}
+
+.minipage {
+  display: inline-block;
+  vertical-align: top;
+  width: 48%;
+  text-align: center;
+}
+
+.caption {
+  display: block;
+  font-size: 0.91em;
+  margin: 0.4em 0;
+}
+
+table.grid {
+  border-collapse: collapse;
+  margin: 0.8em auto;
+  font-size: 0.95em;
+}
+
+table.grid td {
+  padding: 0.15em 0.6em;
+  vertical-align: top;
+}
+
+table.grid td p {
+  margin: 0;
+}
+
+table.grid.toprule {
+  border-top: 2px solid;
+}
+
+table.grid.bottomrule {
+  border-bottom: 2px solid;
+}
+
+table.grid tr.rule td {
+  border-bottom: 1px solid;
+}
+
+dt {
+  font-weight: bold;
+  margin-top: 0.7em;
+}
+
+dd {
+  margin-left: 1.5em;
+}
+
+ul,
+ol {
+  margin: 0.5em 0;
+  padding-left: 1.6em;
+}
+
+li {
+  margin: 0.3em 0;
+}
+
+blockquote {
+  margin: 0.8em 1.5em;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.overpic {
+  position: relative;
+  margin: 0 auto;
+}
+
+.overpic svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.overpic img {
+  display: block;
+}
+
+.fbox {
+  border: 1px solid;
+  padding: 0 0.2em;
+}
+
+.titlepage {
+  text-align: right;
+  margin: 18% 0 10%;
+}
+
+.booktitle {
+  text-align: right;
+  font-size: 2.4em;
+  page-break-before: auto;
+  margin-bottom: 0.2em;
+}
+
+.subtitle {
+  font-size: 1.3em;
+}
+
+.version {
+  margin-top: 2.5em;
+  font-size: 1.1em;
+}
+
+.author {
+  margin-top: 1.5em;
+  font-size: 1.3em;
+}
+
+.copyright {
+  font-size: 0.9em;
+  margin-top: 3em;
+}
+
+.parttitle {
+  text-align: center;
+  margin: 30% 0 0;
+}
+
+.parttitle h1 {
+  text-align: center;
+  page-break-before: auto;
+  font-variant: small-caps;
+}
+
+.partnumber {
+  font-size: 1.2em;
+  font-variant: small-caps;
+  margin-bottom: 0;
+}
+
+.footnotes {
+  font-size: 0.88em;
+  margin-top: 2em;
+}
+
+.footnotes p {
+  margin: 0.3em 0;
+}

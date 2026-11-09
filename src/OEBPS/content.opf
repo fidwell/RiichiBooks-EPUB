@@ -1,110 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="book-id" xml:lang="en">
-<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
-<dc:identifier id="book-id">urn:uuid:64b058b4-94f8-20a6-c056-681213ed32a9</dc:identifier>
-<dc:title>Riichi Book I: A Mahjong Strategy Primer for European Players</dc:title>
-<dc:creator>Daina Chiba</dc:creator>
-<dc:language>en</dc:language>
-<dc:rights>Creative Commons Attribution NonCommercial 3.0 Unported License</dc:rights>
-<meta property="dcterms:modified">2026-11-09T23:31:00Z</meta>
-<meta name="cover" content="img49"/>
-</metadata>
-<manifest>
-<item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
-<item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
-<item id="css" href="style.css" media-type="text/css"/>
-<item id="font-tiles" href="fonts/NotoSansSymbols2-Regular.ttf" media-type="font/ttf"/>
-<item id="font-license" href="fonts/OFL.txt" media-type="text/plain"/>
-<item id="cover-page" href="cover.xhtml" media-type="application/xhtml+xml"/>
-<item id="page0" href="titlepage.xhtml" media-type="application/xhtml+xml"/>
-<item id="page1" href="preface.xhtml" media-type="application/xhtml+xml"/>
-<item id="page2" href="part1.xhtml" media-type="application/xhtml+xml"/>
-<item id="page3" href="chapter01.xhtml" media-type="application/xhtml+xml" properties="svg"/>
-<item id="page4" href="chapter02.xhtml" media-type="application/xhtml+xml" properties="svg"/>
-<item id="page5" href="part2.xhtml" media-type="application/xhtml+xml"/>
-<item id="page6" href="chapter03.xhtml" media-type="application/xhtml+xml"/>
-<item id="page7" href="chapter04.xhtml" media-type="application/xhtml+xml"/>
-<item id="page8" href="chapter05.xhtml" media-type="application/xhtml+xml"/>
-<item id="page9" href="part3.xhtml" media-type="application/xhtml+xml"/>
-<item id="page10" href="chapter06.xhtml" media-type="application/xhtml+xml"/>
-<item id="page11" href="chapter07.xhtml" media-type="application/xhtml+xml"/>
-<item id="page12" href="chapter08.xhtml" media-type="application/xhtml+xml"/>
-<item id="page13" href="chapter09.xhtml" media-type="application/xhtml+xml"/>
-<item id="page14" href="chapter10.xhtml" media-type="application/xhtml+xml"/>
-<item id="page15" href="part4.xhtml" media-type="application/xhtml+xml"/>
-<item id="page16" href="appendix1.xhtml" media-type="application/xhtml+xml"/>
-<item id="page17" href="appendix2.xhtml" media-type="application/xhtml+xml"/>
-<item id="img0" href="images/Tenhou_logo_raw_wb.jpg" media-type="image/jpeg"/>
-<item id="img1" href="images/tenhou0.jpg" media-type="image/jpeg"/>
-<item id="img2" href="images/tenhou1.jpg" media-type="image/jpeg"/>
-<item id="img3" href="images/tenhou3.jpg" media-type="image/jpeg"/>
-<item id="img4" href="images/tenhou4.jpg" media-type="image/jpeg"/>
-<item id="img5" href="images/tenhou5.jpg" media-type="image/jpeg"/>
-<item id="img6" href="images/tenhou6.jpg" media-type="image/jpeg"/>
-<item id="img7" href="images/tenhou8.jpg" media-type="image/jpeg"/>
-<item id="img8" href="images/tenhou9.jpg" media-type="image/jpeg"/>
-<item id="img9" href="images/tenhou10.jpg" media-type="image/jpeg"/>
-<item id="img10" href="images/tenhou11.jpg" media-type="image/jpeg"/>
-<item id="img11" href="images/tenhou_lobby.jpg" media-type="image/jpeg"/>
-<item id="img12" href="images/ippan.jpg" media-type="image/jpeg"/>
-<item id="img13" href="images/taikyoku.png" media-type="image/png"/>
-<item id="img14" href="images/interface.jpg" media-type="image/jpeg"/>
-<item id="img15" href="images/riichi.jpg" media-type="image/jpeg"/>
-<item id="img16" href="images/furiten.jpg" media-type="image/jpeg"/>
-<item id="img17" href="images/ron.jpg" media-type="image/jpeg"/>
-<item id="img18" href="images/pung.jpg" media-type="image/jpeg"/>
-<item id="img19" href="images/callchii_alt2.jpg" media-type="image/jpeg"/>
-<item id="img20" href="images/ron_pass.jpg" media-type="image/jpeg"/>
-<item id="img21" href="images/choices.jpg" media-type="image/jpeg"/>
-<item id="img22" href="images/yakuman.jpg" media-type="image/jpeg"/>
-<item id="img23" href="images/proceeding1.png" media-type="image/png"/>
-<item id="img24" href="images/proceeding2.png" media-type="image/png"/>
-<item id="img25" href="images/gametype.jpg" media-type="image/jpeg"/>
-<item id="img26" href="images/finalscore.jpg" media-type="image/jpeg"/>
-<item id="img27" href="images/warning2.jpg" media-type="image/jpeg"/>
-<item id="img28" href="images/warning1.jpg" media-type="image/jpeg"/>
-<item id="img29" href="images/rank2.jpg" media-type="image/jpeg"/>
-<item id="img30" href="images/pt.png" media-type="image/png"/>
-<item id="img31" href="images/7dan.png" media-type="image/png"/>
-<item id="img32" href="images/stats1_anon.jpg" media-type="image/jpeg"/>
-<item id="img33" href="images/stats_wd.svg" media-type="image/svg+xml"/>
-<item id="img34" href="images/stats_cr.svg" media-type="image/svg+xml"/>
-<item id="img35" href="images/stats2.jpg" media-type="image/jpeg"/>
-<item id="img36" href="images/haifukanri.jpg" media-type="image/jpeg"/>
-<item id="img37" href="images/tenbou100.jpg" media-type="image/jpeg"/>
-<item id="img38" href="images/tenbou1000.jpg" media-type="image/jpeg"/>
-<item id="img39" href="images/tenbou5000.jpg" media-type="image/jpeg"/>
-<item id="img40" href="images/tenbou10000.jpg" media-type="image/jpeg"/>
-<item id="img41" href="images/tenbou500.jpg" media-type="image/jpeg"/>
-<item id="img42" href="images/barr1.jpg" media-type="image/jpeg"/>
-<item id="img43" href="images/kaji1.jpg" media-type="image/jpeg"/>
-<item id="img44" href="images/kaji2.jpg" media-type="image/jpeg"/>
-<item id="img45" href="images/kaji3.jpg" media-type="image/jpeg"/>
-<item id="img46" href="images/barr2.jpg" media-type="image/jpeg"/>
-<item id="img47" href="images/miller1.jpg" media-type="image/jpeg"/>
-<item id="img48" href="images/miller2.jpg" media-type="image/jpeg"/>
-<item id="img49" href="images/RiichiBook1_cover.jpg" media-type="image/jpeg" properties="cover-image"/>
-</manifest>
-<spine toc="ncx">
-<itemref idref="cover-page" linear="yes"/>
-<itemref idref="page0"/>
-<itemref idref="page1"/>
-<itemref idref="page2"/>
-<itemref idref="page3"/>
-<itemref idref="page4"/>
-<itemref idref="page5"/>
-<itemref idref="page6"/>
-<itemref idref="page7"/>
-<itemref idref="page8"/>
-<itemref idref="page9"/>
-<itemref idref="page10"/>
-<itemref idref="page11"/>
-<itemref idref="page12"/>
-<itemref idref="page13"/>
-<itemref idref="page14"/>
-<itemref idref="page15"/>
-<itemref idref="page16"/>
-<itemref idref="page17"/>
-</spine>
-<guide><reference type="cover" title="Cover" href="cover.xhtml"/></guide>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="book-id"
+    xml:lang="en">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <dc:identifier id="book-id">urn:uuid:64b058b4-94f8-20a6-c056-681213ed32a9</dc:identifier>
+        <dc:title>Riichi Book I: A Mahjong Strategy Primer for European Players</dc:title>
+        <dc:creator>Daina Chiba</dc:creator>
+        <dc:language>en</dc:language>
+        <dc:rights>Creative Commons Attribution NonCommercial 3.0 Unported License</dc:rights>
+        <meta property="dcterms:modified">2026-11-09T23:31:00Z</meta>
+        <meta name="cover" content="img49" />
+    </metadata>
+    <manifest>
+        <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav" />
+        <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
+        <item id="css" href="style.css" media-type="text/css" />
+        <item id="font-tiles" href="fonts/NotoSansSymbols2-Regular.ttf" media-type="font/ttf" />
+        <item id="font-license" href="fonts/OFL.txt" media-type="text/plain" />
+        <item id="cover-page" href="cover.xhtml" media-type="application/xhtml+xml" />
+        <item id="page0" href="titlepage.xhtml" media-type="application/xhtml+xml" />
+        <item id="page1" href="preface.xhtml" media-type="application/xhtml+xml" />
+        <item id="page2" href="part1.xhtml" media-type="application/xhtml+xml" />
+        <item id="page3" href="chapter01.xhtml" media-type="application/xhtml+xml" properties="svg" />
+        <item id="page4" href="chapter02.xhtml" media-type="application/xhtml+xml" properties="svg" />
+        <item id="page5" href="part2.xhtml" media-type="application/xhtml+xml" />
+        <item id="page6" href="chapter03.xhtml" media-type="application/xhtml+xml" />
+        <item id="page7" href="chapter04.xhtml" media-type="application/xhtml+xml" />
+        <item id="page8" href="chapter05.xhtml" media-type="application/xhtml+xml" />
+        <item id="page9" href="part3.xhtml" media-type="application/xhtml+xml" />
+        <item id="page10" href="chapter06.xhtml" media-type="application/xhtml+xml" />
+        <item id="page11" href="chapter07.xhtml" media-type="application/xhtml+xml" />
+        <item id="page12" href="chapter08.xhtml" media-type="application/xhtml+xml" />
+        <item id="page13" href="chapter09.xhtml" media-type="application/xhtml+xml" />
+        <item id="page14" href="chapter10.xhtml" media-type="application/xhtml+xml" />
+        <item id="page15" href="part4.xhtml" media-type="application/xhtml+xml" />
+        <item id="page16" href="appendix1.xhtml" media-type="application/xhtml+xml" />
+        <item id="page17" href="appendix2.xhtml" media-type="application/xhtml+xml" />
+        <item id="img0" href="images/Tenhou_logo_raw_wb.jpg" media-type="image/jpeg" />
+        <item id="img1" href="images/tenhou0.jpg" media-type="image/jpeg" />
+        <item id="img2" href="images/tenhou1.jpg" media-type="image/jpeg" />
+        <item id="img3" href="images/tenhou3.jpg" media-type="image/jpeg" />
+        <item id="img4" href="images/tenhou4.jpg" media-type="image/jpeg" />
+        <item id="img5" href="images/tenhou5.jpg" media-type="image/jpeg" />
+        <item id="img6" href="images/tenhou6.jpg" media-type="image/jpeg" />
+        <item id="img7" href="images/tenhou8.jpg" media-type="image/jpeg" />
+        <item id="img8" href="images/tenhou9.jpg" media-type="image/jpeg" />
+        <item id="img9" href="images/tenhou10.jpg" media-type="image/jpeg" />
+        <item id="img10" href="images/tenhou11.jpg" media-type="image/jpeg" />
+        <item id="img11" href="images/tenhou_lobby.jpg" media-type="image/jpeg" />
+        <item id="img12" href="images/ippan.jpg" media-type="image/jpeg" />
+        <item id="img13" href="images/taikyoku.png" media-type="image/png" />
+        <item id="img14" href="images/interface.jpg" media-type="image/jpeg" />
+        <item id="img15" href="images/riichi.jpg" media-type="image/jpeg" />
+        <item id="img16" href="images/furiten.jpg" media-type="image/jpeg" />
+        <item id="img17" href="images/ron.jpg" media-type="image/jpeg" />
+        <item id="img18" href="images/pung.jpg" media-type="image/jpeg" />
+        <item id="img19" href="images/callchii_alt2.jpg" media-type="image/jpeg" />
+        <item id="img20" href="images/ron_pass.jpg" media-type="image/jpeg" />
+        <item id="img21" href="images/choices.jpg" media-type="image/jpeg" />
+        <item id="img22" href="images/yakuman.jpg" media-type="image/jpeg" />
+        <item id="img23" href="images/proceeding1.png" media-type="image/png" />
+        <item id="img24" href="images/proceeding2.png" media-type="image/png" />
+        <item id="img25" href="images/gametype.jpg" media-type="image/jpeg" />
+        <item id="img26" href="images/finalscore.jpg" media-type="image/jpeg" />
+        <item id="img27" href="images/warning2.jpg" media-type="image/jpeg" />
+        <item id="img28" href="images/warning1.jpg" media-type="image/jpeg" />
+        <item id="img29" href="images/rank2.jpg" media-type="image/jpeg" />
+        <item id="img30" href="images/pt.png" media-type="image/png" />
+        <item id="img31" href="images/7dan.png" media-type="image/png" />
+        <item id="img32" href="images/stats1_anon.jpg" media-type="image/jpeg" />
+        <item id="img33" href="images/stats_wd.svg" media-type="image/svg+xml" />
+        <item id="img34" href="images/stats_cr.svg" media-type="image/svg+xml" />
+        <item id="img35" href="images/stats2.jpg" media-type="image/jpeg" />
+        <item id="img36" href="images/haifukanri.jpg" media-type="image/jpeg" />
+        <item id="img37" href="images/tenbou100.jpg" media-type="image/jpeg" />
+        <item id="img38" href="images/tenbou1000.jpg" media-type="image/jpeg" />
+        <item id="img39" href="images/tenbou5000.jpg" media-type="image/jpeg" />
+        <item id="img40" href="images/tenbou10000.jpg" media-type="image/jpeg" />
+        <item id="img41" href="images/tenbou500.jpg" media-type="image/jpeg" />
+        <item id="img42" href="images/barr1.jpg" media-type="image/jpeg" />
+        <item id="img43" href="images/kaji1.jpg" media-type="image/jpeg" />
+        <item id="img44" href="images/kaji2.jpg" media-type="image/jpeg" />
+        <item id="img45" href="images/kaji3.jpg" media-type="image/jpeg" />
+        <item id="img46" href="images/barr2.jpg" media-type="image/jpeg" />
+        <item id="img47" href="images/miller1.jpg" media-type="image/jpeg" />
+        <item id="img48" href="images/miller2.jpg" media-type="image/jpeg" />
+        <item id="img49" href="images/RiichiBook1_cover.jpg" media-type="image/jpeg" properties="cover-image" />
+    </manifest>
+    <spine toc="ncx">
+        <itemref idref="cover-page" linear="yes" />
+        <itemref idref="page0" />
+        <itemref idref="page1" />
+        <itemref idref="page2" />
+        <itemref idref="page3" />
+        <itemref idref="page4" />
+        <itemref idref="page5" />
+        <itemref idref="page6" />
+        <itemref idref="page7" />
+        <itemref idref="page8" />
+        <itemref idref="page9" />
+        <itemref idref="page10" />
+        <itemref idref="page11" />
+        <itemref idref="page12" />
+        <itemref idref="page13" />
+        <itemref idref="page14" />
+        <itemref idref="page15" />
+        <itemref idref="page16" />
+        <itemref idref="page17" />
+    </spine>
+    <guide>
+        <reference type="cover" title="Cover" href="cover.xhtml" />
+    </guide>
 </package>

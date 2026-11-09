@@ -1,366 +1,1027 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" lang="en" xml:lang="en">
+
 <head>
-<meta charset="utf-8"/>
-<title>Scoring</title>
-<link rel="stylesheet" type="text/css" href="style.css"/>
+  <meta charset="utf-8" />
+  <title>Scoring</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
+
 <body>
-<h1 id="chapter06"><span class="chapnum">Chapter 6</span>Scoring</h1>
-<a id="l-ch-scores"></a>
-<p>The scoring system in mahjong is quite complex. Getting proficiency in score calculation requires a lot of practice. The good news is that scoring is automatically done once you win a hand when you play online. Even when you play offline, you can usually count on your fellow players to help you get the correct score once you win a hand.</p>
-<p>However, you often need to calculate the (potential) scores of your hand <em>before</em> you win the hand. This is because a lot of important judgements you make during the game — riichi judgement, defense judgement, and melding judgement, among others — depend on the potential scores of your hand. Therefore, developing ability to calculate the scores correctly and quickly without any help of others is of utmost importance. I introduce some efficient methods of score calculation in this chapter before we discuss riichi, defense, and melding judgements in the subsequent chapters.</p>
-<h2 id="chapter06-h1"><span class="secnum">6.1</span> Three steps in score calculation</h2>
-<p>Every rule book of mahjong has comprehensive scoring tables (similar to Tables <a href="chapter06.xhtml#l-tbl-scores1">6.10</a> and <a href="chapter06.xhtml#l-tbl-scores2">6.11</a> at the end of this chapter) that show all possible scores for all possible minipoints (<span class="jap">fu</span>). Although such tables are a good reference to have, it is <em>not</em> very efficient to try to memorize everything in such tables.</p>
-<p>A more practical approach would be to focus on a small number of frequently observed patterns of scoring and memorize them correctly, while ignoring other, less important ones. Before introducing some shortcuts to do efficient scoring, let’s first review the three required steps in score calculation, summarized in a box on the next page.</p>
-<div class="box"><p class="boxtitle">Three steps in score calculation</p><dl>
-<dt>Step 1:</dt>
-<dd><strong>Count the number of <span class="jap">han</span>.</strong><br/> 
-First, you need to figure out how many <span class="jap">han</span> a hand has. If a hand has five or more <span class="jap">han</span>, skip Step 2 and go directly to Step 3. If not, proceed to Step 2.</dd>
-<dt>Step 2:</dt>
-<dd><strong>Figure out the minipoints.</strong><br/> 
-When a hand has four or less <span class="jap">han</span>, you then need to know the hand’s minipoints. This does not mean, however, that you always need to do some maths to get the correct minipoints. We will discuss some practical shortcuts below.</dd>
-<dt>Step 3:</dt>
-<dd><strong>Get the score.</strong><br/>
-Based on the number of <span class="jap">han</span> (and possibly minipoints), you get the score. You will have to memorize some score patterns.</dd>
-</dl></div>
-<p>In the remainder of this chapter, I will first introduce basic methods of score calculation in Section <a href="chapter06.xhtml#l-sec-scores1">6.2</a>. The basic methods involve using some shortcuts in Step 2 above. Once you master the basic methods, you will be able to calculate scores correctly most of the time.<a epub:type="noteref" class="noteref" id="chapter06-fn1-ref" href="#chapter06-fn1">1</a> When you master the contents of Section <a href="chapter06.xhtml#l-sec-scores1">6.2</a>, you may skip Section <a href="chapter06.xhtml#l-sec-scores2">6.3</a> and proceed to the next chapter. Section <a href="chapter06.xhtml#l-sec-scores2">6.3</a> covers more advanced methods of score calculation, which would be necessary only in exceptional cases. This involves an exact calculation of minipoints in Step 2 above.</p>
-<h2 id="chapter06-h2"><span class="secnum">6.2</span> Basic scoring</h2>
-<a id="l-sec-scores1"></a>
-<h3 id="chapter06-h3">1. Counting the number of <span class="jap">han</span></h3>
-<p>Step 1 in score calculation is counting the number of <span class="jap">han</span> in a hand. This is the most important part in score calculation, and there is no useful shortcut here. You need to be able to identify all the <span class="jap">yaku</span> in a hand as well as the associated <span class="jap">han</span> counts for each.</p>
-<p>A good way to practice this is to try to beat the automatic score counting on <span class="jap">Tenhou</span>. Whenever someone wins a hand, <span class="jap">Tenhou</span> displays all the <span class="jap">yaku</span> and the associated <span class="jap">han</span> counts one after another in a few seconds. Try to identify all the <span class="jap">yaku</span> of your opponent’s hand before they get displayed automatically.</p>
-<h4>Scores for limit hands</h4>
-<p>When a hand has five or more <span class="jap">han</span>, the hand is a limit hand. Scores of limit hands do not depend on minipoints so we can go directly to Step 3. To get the score for a given <span class="jap">han</span> count, we utilize Table <a href="chapter06.xhtml#l-tbl-limithands">6.1</a>. This is something you need to memorize.</p>
-<div class="float"><p><span class="small">
-<span class="caption"><strong>Table 6.1.</strong> Scores for limit hands</span> <a id="l-tbl-limithands"></a></span></p>
-<table class="grid toprule bottomrule">
-<tr><td style="text-align:left"><span class="jap">Han</span></td><td style="text-align:left">Name</td><td colspan="2" style="text-align:center"><span class="jap">Ron</span></td><td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td></tr>
-<tr class="rule"><td style="text-align:left">&#160;</td><td style="text-align:left">&#160;</td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td></tr>
-<tr><td style="text-align:left">5</td><td style="text-align:left"><span class="jap">mangan</span></td><td style="text-align:right"><strong>8000</strong></td><td style="text-align:right">12000</td><td style="text-align:right">2000-4000</td><td style="text-align:right">4000-all</td></tr>
-<tr><td style="text-align:left">6–7</td><td style="text-align:left"><span class="jap">haneman</span></td><td style="text-align:right">12000</td><td style="text-align:right">18000</td><td style="text-align:right">3000-6000</td><td style="text-align:right">6000-all</td></tr>
-<tr><td style="text-align:left">8–10</td><td style="text-align:left"><span class="jap">baiman</span></td><td style="text-align:right">16000</td><td style="text-align:right">24000</td><td style="text-align:right">4000-8000</td><td style="text-align:right">8000-all</td></tr>
-<tr><td style="text-align:left">11–12</td><td style="text-align:left"><span class="jap">sanbaiman</span></td><td style="text-align:right">24000</td><td style="text-align:right">36000</td><td style="text-align:right">6000-12000</td><td style="text-align:right">12000-all</td></tr>
-<tr><td style="text-align:left">13+<sup>*</sup></td><td style="text-align:left"><span class="jap">yakuman</span></td><td style="text-align:right">32000</td><td style="text-align:right">48000</td><td style="text-align:right">8000-16000</td><td style="text-align:right">16000-all</td></tr>
-<tr><td colspan="6" style="text-align:left"><span class="footnotesize"><sup>*</sup> A hand with 13+ <span class="jap">han</span> is scored as a <span class="jap">sanbaiman</span> with the revised EMA rules.</span></td></tr>
-</table></div>
-<p>As you can see, there are some regularities and redundancies that make it relatively easy to memorize this table. The most important score of all is 8000 (<span class="jap">mangan ron</span> for non-dealer). This is the basis of all the other scores in this table. For example, <span class="jap">haneman</span> scores are 1.5 times <span class="jap">mangan</span> scores, <span class="jap">baiman</span> scores are two times <span class="jap">mangan</span> scores, <span class="jap">sanbaiman</span> scores are three times <span class="jap">mangan</span> scores,<a epub:type="noteref" class="noteref" id="chapter06-fn2-ref" href="#chapter06-fn2">2</a> and <span class="jap">yakuman</span> scores are four times <span class="jap">mangan</span> scores.
-In addition, scores for dealer are exactly 1.5 times the corresponding scores for non-dealer in all limit hands. Finally, scores for <span class="jap">tsumo</span> (self draw) cases are simple and straightforward; the dealer pays one half of the total, and each of the two non-dealers pays one fourth of the total. For example, in the case of <span class="jap">mangan tsumo</span> (8000), the dealer pays 4000 and non-dealers pay 2000 each.</p>
-<h3 id="chapter06-h4">2. Figuring out the minipoints</h3>
-<p>When a hand has four or less <span class="jap">han</span>, you have to know the minipoints. As I pointed out earlier, this does not mean that you always have to count all the minipoint contributions from all the melds and wait in a hand. Such a calculation is required only in special cases. Instead, you can use the chart in Figure <a href="chapter06.xhtml#l-fig-mini">6.1</a> that summarizes the six most frequently observed patterns you need to memorize.</p>
-<div class="float"><div class="box"><p class="boxtitle">Shortcut for minipoint calculation</p><ol>
-<li><span class="jap">chiitoitsu</span> ⇒ <strong>always</strong> 25 minipoints</li>
-<li>A hand has one or more quads ⇒ Don’t bother.</li>
-<li><span class="jap">toitoi</span> ⇒ <strong>almost always</strong> 40 minipoints</li>
-<li><p><span class="jap">Pinfu</span></p>
-<ul>
-<li><span class="jap">ron</span> ⇒ <strong>always</strong> 30 minipoints</li>
-<li><span class="jap">tsumo</span> ⇒ <strong>always</strong> 20 minipoints</li>
-</ul></li>
-<li><p>Closed hand without <span class="jap">pinfu</span></p>
-<ul>
-<li><span class="jap">ron</span> ⇒ <strong>almost always</strong> 40 minipoints</li>
-<li><span class="jap">tsumo</span> ⇒ <strong>almost always</strong> 30 minipoints</li>
-</ul></li>
-<li>Open hand ⇒ <strong>almost always</strong> 30 minipoints</li>
-</ol></div>
-<p><span class="caption"><strong>Figure 6.1.</strong> Six most observed patterns</span><a id="l-fig-mini"></a></p></div>
-<p>You can use this Figure as a flowchart. 
-You first check if the hand is a <span class="jap">chiitoitsu</span> (Seven Pairs) hand. If it is, it is always 25 minipoints. If it is not, you then check if the hand has one or more quads (kongs). If it does, the hand is out of the scope of the basic methods. Ask for help from more experienced players after winning the hand. Advanced methods we discuss in Section <a href="chapter06.xhtml#l-sec-scores2">6.3</a> will cover this exceptional case. 
-Third, you check if the hand is <span class="jap">toitoi</span> (All Pungs).<a epub:type="noteref" class="noteref" id="chapter06-fn3-ref" href="#chapter06-fn3">3</a> If it is, it’s almost always 40 minipoints unless it is a <span class="jap">tanyao toitoi</span> hand that is likely to have 30 minipoints.</p>
-<p>Once you rule out the first three cases (<span class="jap">chiitoitsu</span>, quads, and <span class="jap">toitoi</span>), the last three are the most important ones; the great majority of hands you see will be one of these three. Here, you check two things. 
-First, check if it is a <span class="jap">pinfu</span> hand. If it is, it’s always 30 minipoints (<span class="jap">ron</span>) or 20 minipoints (<span class="jap">tsumo</span>). 
-If it is not <span class="jap">pinfu</span>, you then check if it is a closed hand or an open hand. If it is a closed hand, it is <em>almost</em> always 40 minipoints (<span class="jap">ron</span>) or 30 minipoints (<span class="jap">tsumo</span>). If it is an open hand, it is <em>almost</em> always 30 minipoints whether you win it by <span class="jap">ron</span> or <span class="jap">tsumo</span>.</p>
-<p>Because of the importance of the cases 4, 5, and 6 (<span class="jap">pinfu</span>, closed, and open hand), we will first discuss these three cases. We will then discuss cases 1 and 3 (<span class="jap">chiitoitsu</span> and <span class="jap">toitoi</span>), which are way more exceptional.</p>
-<h4>What do we mean by “almost always”?</h4>
-<p>Before getting to score calculation, let me explain what we mean when we say something is <em>almost</em> always X minipoints in cases 5 and 6 in Figure <a href="chapter06.xhtml#l-fig-mini">6.1</a>. 
-With a non-<span class="jap">toitoi</span> hand without quads, check if the hand has one or more concealed set of terminal/honor tiles or its equivalent. Recall that one concealed set of terminal/honor tiles is equivalent to <u>two open</u> sets of terminal/honor tiles or <u>two concealed</u> sets of simple tiles in minipoints. 
-Therefore, what we check is whether a hand has any of the following:</p>
-<ul>
-<li>at least <u>one concealed</u> set of terminal/honor tiles;</li>
-<li>at least <u>two open</u> sets of terminal/honor tiles;</li>
-<li><u>one open</u> set of terminal/honor tiles <em>and</em> 
-<u>one concealed</u> set of simples;</li>
-<li>at least <u>two concealed</u> sets of simples.</li>
-</ul>
-<p>When none of the four cases above applies to a non-<span class="jap">toitoi</span> hand without quads, the hand is <em>always</em> worth 40 minipoints if it is closed and won by <span class="jap">ron</span>, and <em>always</em> worth 30 minipoints in all other cases (i.e., closed <span class="jap">tsumo</span>, open <span class="jap">ron</span>, and open <span class="jap">tsumo</span>). Therefore, there is really no need to calculate minipoints for hands like the following:</p>
-<div class="tiles"><div class="tilerow"><span class="tileline"><span class="tile">🀇︎</span><span class="tile">🀇︎</span><span class="tile">🀜︎</span><span class="tile">🀝︎</span><span class="tile">🀑︎</span><span class="tile">🀒︎</span><span class="tile">🀓︎</span><span class="tile">🀖︎</span><span class="tile">🀗︎</span><span class="tile">🀘︎</span>&#160;<span class="tile">🀄︎</span><span class="tile sideways"><span class="turned">🀄︎</span></span><span class="tile">🀄︎</span></span><span class="tileline"><span class="tile">🀊︎</span><span class="tile">🀋︎</span><span class="tile">🀐︎</span><span class="tile">🀐︎</span><span class="tile">🀒︎</span><span class="tile">🀓︎</span><span class="tile">🀔︎</span>&#160;<span class="tile sideways"><span class="turned">🀀︎</span></span><span class="tile">🀀︎</span><span class="tile">🀀︎</span>&#160;<span class="tile">🀉︎</span><span class="tile">🀉︎</span><span class="tile sideways"><span class="turned">🀉︎</span></span>
-<span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀍︎</span><span class="tile">🀎︎</span><span class="tile">🀑︎</span><span class="tile">🀒︎</span><span class="tile">🀓︎</span><span class="tile">🀕︎</span><span class="tile">🀕︎</span><span class="tile">🀖︎</span><span class="tile">🀗︎</span><span class="tile">🀘︎</span></span></div></div>
-<p>With hands like these, we can simply check whether the win was a closed <span class="jap">ron</span>. If so, the hand has 40 minipoints; otherwise, it has 30 minipoints.</p>
-<p>In addition, so-called “open <span class="jap">pinfu</span>” hands such as below <a epub:type="noteref" class="noteref" id="chapter06-fn4-ref" href="#chapter06-fn4">4</a> are <em>always</em> 30 minipoints. This is one of the two exceptions to minipoint calculation. For minipoint calculation, see Section <a href="chapter06.xhtml#l-sec-scores2">6.3</a>.</p>
-<div class="tiles"><div class="tilerow"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀜︎</span><span class="tile">🀝︎</span><span class="tile">🀑︎</span><span class="tile">🀒︎</span><span class="tile">🀓︎</span><span class="tile">🀕︎</span><span class="tile">🀖︎</span><span class="tile">🀗︎</span>&#160;<span class="tile sideways"><span class="turned">🀉︎</span></span><span class="tile">🀊︎</span><span class="tile">🀋︎</span></span></div></div>
-<p>On the other hand, if a hand satisfies any of the four conditions above, we need to calculate the minipoints by actually counting and summing all the minipoint contributions from all the melds, the head, and the wait to determine the minipoints of a hand. We will discuss this in Section <a href="chapter06.xhtml#l-sec-scores2">6.3</a>.</p>
-<h3 id="chapter06-h5">3. Getting the scores</h3>
-<p>As Figure <a href="chapter06.xhtml#l-fig-mini">6.1</a> makes clear, the case of 30 minipoints is the most important pattern. We thus start with this pattern. We will then proceed to the cases of 40, 20, and 25 minipoints.</p>
-<h4><span class="fbox">30 minipoints</span></h4>
-<p>You get 30 minipoints when you get:</p>
-<ul>
-<li><span class="jap">pinfu ron</span> (always);</li>
-<li>closed hand <span class="jap">tsumo</span> (almost always); or</li>
-<li>open hand <span class="jap">ron</span> / <span class="jap">tsumo</span> (almost always).</li>
-</ul>
-<p>Scores for 30 minipoints are summarized in Table <a href="chapter06.xhtml#l-tbl-30mp">6.2</a>.</p>
-<div class="float"><p><span class="small"><span class="caption"><strong>Table 6.2.</strong> Scores for 30 minipoints</span> <a id="l-tbl-30mp"></a></span></p>
-<table class="grid toprule bottomrule">
-<tr><td style="text-align:left"><span class="jap">Han</span></td><td colspan="2" style="text-align:center"><span class="jap">Ron</span></td><td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td></tr>
-<tr class="rule"><td style="text-align:left">&#160;</td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td></tr>
-<tr><td style="text-align:left">1</td><td style="text-align:right">1000</td><td style="text-align:right">1500</td><td style="text-align:right">300-500</td><td style="text-align:right">500-all</td></tr>
-<tr><td style="text-align:left">2</td><td style="text-align:right">2000</td><td style="text-align:right">2900</td><td style="text-align:right">500-1000</td><td style="text-align:right">1000-all</td></tr>
-<tr><td style="text-align:left">3</td><td style="text-align:right">3900</td><td style="text-align:right">5800</td><td style="text-align:right">1000-2000</td><td style="text-align:right">2000-all</td></tr>
-<tr><td style="text-align:left">4</td><td style="text-align:right">7700</td><td style="text-align:right">11600</td><td style="text-align:right">2000-3900</td><td style="text-align:right">3900-all</td></tr>
-<tr><td style="text-align:left">5+</td><td colspan="4" style="text-align:center">limit hand</td></tr>
-</table></div>
-<p>Compared with the limit hands table (Table <a href="chapter06.xhtml#l-tbl-limithands">6.1</a>), the regularities in the 30 minipoints table are less precise. For example, scores for dealer are only <em>roughly</em> 1.5 times those for non-dealer; <span class="jap">tsumo</span> scores are sometimes slightly bigger than the corresponding <span class="jap">ron</span> scores. For example, one-<span class="jap">han tsumo</span> (300-500) gives you 300+300+500 = 1100, which is slightly bigger than one-<span class="jap">han ron</span> (1000).</p>
-<p>Therefore, it would be more efficient if we just memorize these patterns as they are, rather than trying to simplify them. Japanese players tend to memorize Table <a href="chapter06.xhtml#l-tbl-30mp">6.2</a> column-wise, as follows:</p>
-<div class="box"><p class="boxtitle">Scores for 30 minipoints</p><ul>
-<li><span class="jap">ron</span> (non-dealer): 10, 20, 39, 77</li>
-<li><span class="jap">ron</span> (dealer): 15, 29, 58, 116</li>
-<li><span class="jap">tsumo</span> (non-dealer): 3-5, 5-10, 10-20, 20-39</li>
-</ul></div>
-<p>The benefit of memorizing this score table column-wise is that scores get (roughly) twice as big for an additional <span class="jap">han</span>. Moreover, if we memorize the <span class="jap">tsumo</span> scores for non-dealer, we can easily derive those for dealer. 
-When I was trying to memorize these, I used to recite these sequences a number of times so that they get beaten into my head.</p>
-<h4><span class="fbox">40 minipoints</span></h4>
-<p>You get 40 minipoints when you get:</p>
-<ul>
-<li>non-<span class="jap">pinfu</span> closed hand <span class="jap">ron</span> (almost always); or</li>
-<li><span class="jap">toitoi</span> <span class="jap">ron</span> / <span class="jap">tsumo</span> (almost always).</li>
-</ul>
-<p>Scores for 40 minipoints are summarized in Table <a href="chapter06.xhtml#l-tbl-40mp">6.3</a>.</p>
-<div class="float"><p><span class="small"><span class="caption"><strong>Table 6.3.</strong> Scores for 40 minipoints</span> <a id="l-tbl-40mp"></a></span></p>
-<table class="grid toprule bottomrule">
-<tr><td style="text-align:left"><span class="jap">Han</span></td><td colspan="2" style="text-align:center"><span class="jap">Ron</span></td><td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td></tr>
-<tr class="rule"><td style="text-align:left">&#160;</td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td></tr>
-<tr><td style="text-align:left">1</td><td style="text-align:right">1300</td><td style="text-align:right">2000</td><td style="text-align:right">400-700</td><td style="text-align:right">700-all</td></tr>
-<tr><td style="text-align:left">2</td><td style="text-align:right">2600</td><td style="text-align:right">3900</td><td style="text-align:right">700-1300</td><td style="text-align:right">1300-all</td></tr>
-<tr><td style="text-align:left">3</td><td style="text-align:right">5200</td><td style="text-align:right">7700</td><td style="text-align:right">1300-2600</td><td style="text-align:right">2600-all</td></tr>
-<tr><td style="text-align:left">4+</td><td colspan="4" style="text-align:center">limit hand</td></tr>
-</table></div>
-<p>Just like we did with scores for 30 minipoints, I recommend you memorize this column-wise.</p>
-<div class="box"><p class="boxtitle">Scores for 40 minipoints</p><ul>
-<li><span class="jap">ron</span> (non-dealer): 13, 26, 52, <span class="jap">mangan</span></li>
-<li><span class="jap">ron</span> (dealer): 20, 39, 77, <span class="jap">mangan</span></li>
-<li><span class="jap">tsumo</span> (non-dealer): 4-7, 7-13, 13-26, <span class="jap">mangan</span></li>
-</ul></div>
-<p>The good news is that the <span class="jap">ron</span> score sequence for non-dealer —13, 26, 52— is a geometric progression; 13 × 2 = 26, and 26 × 2 = 52. Also, the <span class="jap">ron</span> scores for dealer —20, 39, 77— should look familiar to you if you have already memorized the 30 minipoints <span class="jap">ron</span> scores for non-dealer —10, 20, 39, 77.</p>
-<h4><span class="fbox">20 minipoints</span> <span class="jap">(pinfu tsumo)</span></h4>
-<p>Scores for 20 minipoints are summarized in Table <a href="chapter06.xhtml#l-tbl-20mp">6.4</a>. This table is special in the sense that it does not have the <span class="jap">ron</span> score component nor the one-<span class="jap">han</span> row. This is because you get 20 minipoints only when you get <span class="jap">pinfu + tsumo</span> (hence we have at least two <span class="jap">han</span>). Even though this is a special case, <span class="jap">pinfu</span> + <span class="jap">tsumo</span> is far from a rare occurrence. It is thus important to know how to get the correct scores for this case.</p>
-<div class="float"><p><span class="small"><span class="caption"><strong>Table 6.4.</strong> Scores for 20 minipoints</span> <a id="l-tbl-20mp"></a></span></p>
-<table class="grid toprule bottomrule">
-<tr><td style="text-align:left"><span class="jap">Han</span></td><td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td></tr>
-<tr class="rule"><td style="text-align:left">&#160;</td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td></tr>
-<tr><td style="text-align:left">2</td><td style="text-align:right">400-700</td><td style="text-align:right">700-all</td></tr>
-<tr><td style="text-align:left">3</td><td style="text-align:right">700-1300</td><td style="text-align:right">1300-all</td></tr>
-<tr><td style="text-align:left">4</td><td style="text-align:right">1300-2600</td><td style="text-align:right">2600-all</td></tr>
-<tr><td style="text-align:left">5+</td><td colspan="2" style="text-align:center">limit hand</td></tr>
-</table></div>
-<p>Notice that there is an interesting similarity between the 20 minipoints table (Table <a href="chapter06.xhtml#l-tbl-20mp">6.4</a>) and the 40 minipoints table (Table <a href="chapter06.xhtml#l-tbl-40mp">6.3</a>). The scoring patterns are almost identical, except that the required number of <span class="jap">han</span> to get a certain score is one <span class="jap">han</span> smaller for 40 minipoints than for 20 minipoints; that is, to get 400-700, we need 2 <span class="jap">han</span> with 20 minipoints, whereas we only need 1 <span class="jap">han</span> with 40 minipoints.</p>
-<p>This is not a coincidence. In general, when we double the minipoints, we need one less <span class="jap">han</span> to get the same score. For example, a 3 <span class="jap">han</span>–30 minipoints hand and a 2 <span class="jap">han</span>–60 minipoints hand have the same score (3900 for non-dealer; 5800 for dealer); a 2 <span class="jap">han</span>–25 minipoints hand and a 1 <span class="jap">han</span>–50 minipoints hand have the same score (1600 for non-dealer; 2400 for dealer). Therefore, once you memorize scores for 30 minipoints, we can easily deduce scores for hands with 60 minipoints. Similarly, we can deduce scores for hands with 50 or 80 minipoints once we memorize scores for 25 or 40 minipoints, respectively.</p>
-<h4><span class="fbox">25 minipoints</span> <span class="jap">(chiitoitsu)</span></h4>
-<p>The final case we cover as part of the basic scoring is scores for a <span class="jap">chiitoitsu</span> hand. As <span class="jap">chiitoitsu</span> is a rather exceptional <span class="jap">yaku</span>, it is given exceptional minipoints — 25 minipoints. 
-Scores for 25 minipoints are summarized in Table <a href="chapter06.xhtml#l-tbl-25mp">6.5</a>.</p>
-<div class="float"><p><span class="small"><span class="caption"><strong>Table 6.5.</strong> Scores for 25 minipoints</span> <a id="l-tbl-25mp"></a></span></p>
-<table class="grid toprule bottomrule">
-<tr><td style="text-align:left"><span class="jap">Han</span></td><td colspan="2" style="text-align:center"><span class="jap">Ron</span></td><td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td></tr>
-<tr class="rule"><td style="text-align:left">&#160;</td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td></tr>
-<tr><td style="text-align:left">2</td><td style="text-align:right">1600</td><td style="text-align:right">2400</td><td style="text-align:right">&#160;</td></tr>
-<tr><td style="text-align:left">3</td><td style="text-align:right">3200</td><td style="text-align:right">4800</td><td style="text-align:right">800-1600</td><td style="text-align:right">1600-all</td></tr>
-<tr><td style="text-align:left">4</td><td style="text-align:right">6400</td><td style="text-align:right">9600</td><td style="text-align:right">1600-3200</td><td style="text-align:right">3200-all</td></tr>
-<tr><td style="text-align:left">5+</td><td colspan="4" style="text-align:center">limit hand</td></tr>
-</table></div>
-<p>Since <span class="jap">chiitoitsu</span> is itself a two-<span class="jap">han</span> <span class="jap">yaku</span>, the scoring table only starts with two <span class="jap">han</span> for <span class="jap">ron</span> and three <span class="jap">han</span> for <span class="jap">tsumo</span>. 
-Again, we memorize this table column-wise.</p>
-<div class="box"><p class="boxtitle">Scores for 25 minipoints</p><ul>
-<li><span class="jap">ron</span> (non-dealer): 16, 32, 64, <span class="jap">mangan</span></li>
-<li><span class="jap">ron</span> (dealer): 24, 48, 96, <span class="jap">mangan</span></li>
-<li><span class="jap">tsumo</span> (non-dealer): 8-16, 16-32, <span class="jap">mangan</span></li>
-</ul></div>
-<p>All the sequences are a geometric progression, making it relatively easy to memorize.</p>
-<h4>Practice, practice, practice</h4>
-<p>This completes the basic methods of score calculation. Memorizing all the scores for limit hands as well as the cases of 30, 40, 20, and 25 minipoints should be more than enough. 
-Of course, no one will be able to master this method just by reading and understanding the materials in this chapter. You would need to actually practice what you have learned, and you will have to do so repeatedly.</p>
-<div class="box"><p><span class="small"><strong><span class="normalsize">Notes on <span class="jap">pinfu tsumo</span></span></strong></span></p>
-<p><span class="small">One of the common mistakes that beginners tend to make is to claim 1000-2000 for riichi + <span class="jap">pinfu + tsumo</span> (mistaking 3 <span class="jap">han</span>–20 minipoints for 3 <span class="jap">han</span>–30 minipoints) or claim <span class="jap">mangan</span> for riichi + <span class="jap">pinfu + tsumo + dora</span> (mistaking 4 <span class="jap">han</span>–20 minipoints for 4 <span class="jap">han</span>–40 minipoints). 
-If you have trouble wrapping your head around why <span class="jap">pinfu + tsumo</span> hands are given lower minipoints, knowing the origin of this rule might be helpful. 
-The <span class="jap">yaku</span> <span class="jap">pinfu</span> is realized when a hand has no component that generates an additional minipoint. A <span class="jap">pinfu</span> hand cannot have a set, edge wait, closed wait, single wait, or a pair of value tiles because they all generate an additional minipoint. Recall that <span class="jap">tsumo</span> also generates 2 minipoints. Therefore, logically speaking, <span class="jap">pinfu</span> cannot be claimed when you win it by <span class="jap">tsumo</span>. In fact, some traditional mahjong rule sets do not allow a combination of <span class="jap">pinfu</span> and <span class="jap">tsumo</span>. 
-Under such rule sets, when you win a <span class="jap">pinfu</span>-only hand by <span class="jap">tsumo</span>, you are allowed to claim <span class="jap">tsumo</span> only, giving you 1 <span class="jap">han</span>–30 minipoints (20 base minipoints + 2 minipoints for <span class="jap">tsumo</span> = 22, rounded up to 30 minipoints), which gives you 300-500.  </span></p>
-<p><span class="small">However, some people thought that this is a bit unfair, claiming that a <span class="jap">pinfu tsumo</span> hand should be given a higher score than a <span class="jap">tsumo</span>-only hand. At the same time, they recognized that the score for <span class="jap">pinfu + tsumo</span> should be lower than that for a “proper” 2-<span class="jap">han</span> <span class="jap">tsumo</span> hand (e.g., <span class="jap">tanyao + tsumo</span>). 
-Therefore, they decided that <span class="jap">pinfu + tsumo</span> should be placed in between these two — 1 <span class="jap">han</span>–30 minipoints (<span class="jap">tsumo</span> only; 300-500) and 2 <span class="jap">han</span>–30 minipoints (<span class="jap">tanyao + tsumo</span>; 500-1000) — giving it the score of 400-700. Therefore, the score for riichi + <span class="jap">pinfu + tsumo</span> (3 <span class="jap">han</span>–20 minipoints; 700-1300) is higher than riichi + <span class="jap">tsumo</span> (2 <span class="jap">han</span>–30 minipoints; 500-1000) but lower than riichi + <span class="jap">tanyao + tsumo</span> (3 <span class="jap">han</span>–30 minipoints; 1000-2000). 
-</span></p></div>
-<h2 id="chapter06-h6"><span class="secnum">6.3</span> Advanced scoring</h2>
-<a id="l-sec-scores2"></a>
-<p>As I mentioned in the previous section, a hand with one or more concealed set of terminal/honor tiles (or its equivalent) or quads may have unusually high minipoints, calling for an actual calculation of minipoints.</p>
-<h3 id="chapter06-h7"><span class="secnum">6.3.1</span> Minipoint calculation</h3>
-<p>Let’s first review the basics of minipoint calculations. 
-All standard hands (i.e., hands with melds) have the base 20 minipoints. Then, we add the following minipoints depending on how we win the hand:<a epub:type="noteref" class="noteref" id="chapter06-fn5-ref" href="#chapter06-fn5">5</a></p>
-<ul>
-<li><span class="jap">tsumo</span> (open or closed, except for <span class="jap">pinfu</span>): 2</li>
-<li><span class="jap">ron</span> (closed): 10</li>
-<li><span class="jap">ron</span> (open): 0</li>
-</ul>
-<p>We add further minipoints for each set and quad in a hand depending on whether it is a concealed one or an open one. Table <a href="chapter06.xhtml#l-tbl-minip_set">6.6</a> summarizes minipoint contributions from a set and a quad.</p>
-<div class="float"><p><span class="small">
-<span class="caption"><strong>Table 6.6.</strong> Minipoint contributions from a set and a quad</span> <a id="l-tbl-minip_set"></a></span></p>
-<table class="grid toprule bottomrule">
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">Tile</td><td colspan="2" style="text-align:center">Minipoint</td></tr>
-<tr class="rule"><td style="text-align:left">&#160;</td><td style="text-align:right">&#160;</td><td style="text-align:center"><span class="footnotesize">Open</span></td><td style="text-align:center"><span class="footnotesize">Concealed</span></td></tr>
-<tr><td style="text-align:left">set</td><td style="text-align:right">simple</td><td style="text-align:center">2</td><td style="text-align:center">4</td></tr>
-<tr class="rule"><td style="text-align:left">&#160;</td><td style="text-align:right">terminal/honor</td><td style="text-align:center">4</td><td style="text-align:center">8</td></tr>
-<tr><td style="text-align:left">quad</td><td style="text-align:right">simple</td><td style="text-align:center">8</td><td style="text-align:center">16</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:right">terminal/honor</td><td style="text-align:center">16</td><td style="text-align:center">32</td></tr>
-</table></div>
-<p>Finally, we add 2 minipoints for each of the following, if any.</p>
-<ul>
-<li>Pair of dragon tiles</li>
-<li>Pair of seat wind tiles</li>
-<li>Pair of prevailing wind tiles</li>
-<li>Closed, edge, or single wait</li>
-</ul>
-<p>When the head of a hand is of seat wind <em>and</em> prevailing wind (e.g., <span class="LARGE"><span class="tile">🀀︎</span></span> for the East player in the East round), we get 2 + 2 = 4 minipoints.<a epub:type="noteref" class="noteref" id="chapter06-fn6-ref" href="#chapter06-fn6">6</a> 
-If the wait is either side wait or dual <span class="jap">pon</span> wait, we don’t get any minipoint for it.
-As we saw when we discussed wait patterns in <a href="chapter03.xhtml#l-sec-waits">3.4</a>, we may get different minipoints depending on which of the multiple winning tiles to win on. 
-For example, consider the following hand.</p>
-<div class="tiles"><div class="tilerow"><span class="tileline"><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀊︎</span><span class="tile">🀋︎</span><span class="tile">🀌︎</span><span class="tile">🀜︎</span><span class="tile">🀜︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span>&#160;<span class="tile">🀒︎</span><span class="tile">🀒︎</span><span class="tile sideways"><span class="turned">🀒︎</span></span></span></div></div>
-<p>The hand is waiting for <span class="LARGE"><span class="tile">🀈︎</span>-<span class="tile">🀋︎</span></span>. If we win by <span class="jap">ron</span> on <span class="LARGE"><span class="tile">🀈︎</span></span>, we get no minipoints for the wait and so this hand has 30 minipoints (base 20 + 8 for a concealed set of honors + 2 for an open set of simple = 30). However, if we win this hand on <span class="LARGE"><span class="tile">🀋︎</span></span>, we get additional 2 minipoints for closed wait. This is because <span class="LARGE"><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀊︎</span><span class="tile">🀋︎</span><span class="tile">🀌︎</span></span> can be thought of as <span class="LARGE"><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀋︎</span> + <span class="tile">🀊︎</span><span class="tile">🀌︎</span></span>. Therefore, the hand has 40 minipoints in that case (30 + 2 = 32, rounded up to 40).</p>
-<h3 id="chapter06-h8"><span class="secnum">6.3.2</span> Scores for 50 minipoints or above</h3>
-<p>When a hand has one or more concealed set of honor tiles, the hand may have 50 minipoints or above. You may want to memorize the case of 50 minipoints, summarized below. 
-If you are a perfectionist, you may also want to memorize the cases of 70 and 110 minipoints as well, but I can assure you that it would not be worth the effort.</p>
-<h4><span class="fbox">50 minipoints</span></h4>
-<p>Scores for 50 minipoints are quite easy to memorize if you have already memorized scores for 25 minipoints (<span class="jap">chiitoitsu</span>), summarized in <a href="chapter06.xhtml#l-tbl-25mp">6.5</a>. Recall that the score for a 1 <span class="jap">han</span>–50 minipoints hand should be the same as that for a 2 <span class="jap">han</span>–25 minipoints hand.</p>
-<div class="float"><p><span class="small"><span class="caption"><strong>Table 6.7.</strong> Scores for 50 minipoints</span> <a id="l-tbl-50mp"></a></span></p>
-<table class="grid toprule bottomrule">
-<tr><td style="text-align:left"><span class="jap">Han</span></td><td colspan="2" style="text-align:center"><span class="jap">Ron</span></td><td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td></tr>
-<tr class="rule"><td style="text-align:left">&#160;</td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td></tr>
-<tr><td style="text-align:left">1</td><td style="text-align:right">1600</td><td style="text-align:right">2400</td><td style="text-align:right">400-800</td><td style="text-align:right">800-all</td></tr>
-<tr><td style="text-align:left">2</td><td style="text-align:right">3200</td><td style="text-align:right">4800</td><td style="text-align:right">800-1600</td><td style="text-align:right">1600-all</td></tr>
-<tr><td style="text-align:left">3</td><td style="text-align:right">6400</td><td style="text-align:right">9600</td><td style="text-align:right">1600-3200</td><td style="text-align:right">3200-all</td></tr>
-<tr><td style="text-align:left">4+</td><td colspan="4" style="text-align:center">limit hand</td></tr>
-</table></div>
-<h4><span class="fbox">70 minipoints</span></h4>
-<p>Hands with 70 minipoints do not appear very often (probably once in 20 games or so). Table <a href="chapter06.xhtml#l-tbl-70mp">6.8</a> summarizes scores for 70 minipoints.
-If you would like to memorize the table, notice that it is sequential (until the end): 23 (non-delaer) → 34 (dealer) → 45 (non-dealer) → 68 (dealer).</p>
-<div class="float"><p><span class="small"><span class="caption"><strong>Table 6.8.</strong> Scores for 70 minipoints</span> <a id="l-tbl-70mp"></a></span></p>
-<table class="grid toprule bottomrule">
-<tr><td style="text-align:left"><span class="jap">Han</span></td><td colspan="2" style="text-align:center"><span class="jap">Ron</span></td><td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td></tr>
-<tr class="rule"><td style="text-align:left">&#160;</td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td></tr>
-<tr><td style="text-align:left">1</td><td style="text-align:right">2300</td><td style="text-align:right">3400</td><td style="text-align:right">600-1200</td><td style="text-align:right">1200-all</td></tr>
-<tr><td style="text-align:left">2</td><td style="text-align:right">4500</td><td style="text-align:right">6800</td><td style="text-align:right">1200-2300</td><td style="text-align:right">2300-all</td></tr>
-<tr><td style="text-align:left">3+</td><td colspan="4" style="text-align:center">limit hand</td></tr>
-</table></div>
-<h4><span class="fbox">110 minipoints</span></h4>
-<p>For the sake of completeness, Table <a href="chapter06.xhtml#l-tbl-110mp">6.9</a> summarizes scores for 110 minipoints.</p>
-<div class="float"><p><span class="small"><span class="caption"><strong>Table 6.9.</strong> Scores for 110 minipoints</span> <a id="l-tbl-110mp"></a></span></p>
-<table class="grid toprule bottomrule">
-<tr><td style="text-align:left"><span class="jap">Han</span></td><td colspan="2" style="text-align:center"><span class="jap">Ron</span></td><td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td></tr>
-<tr class="rule"><td style="text-align:left">&#160;</td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td><td style="text-align:center"><span class="footnotesize">Non-dealer</span></td><td style="text-align:center"><span class="footnotesize">Dealer</span></td></tr>
-<tr><td style="text-align:left">1</td><td style="text-align:right">3600</td><td style="text-align:right">5300</td><td style="text-align:right">—</td><td style="text-align:right">—</td></tr>
-<tr><td style="text-align:left">2</td><td style="text-align:right">7100</td><td style="text-align:right">10600</td><td style="text-align:right">1800-3600</td><td style="text-align:right">3600-all</td></tr>
-<tr><td style="text-align:left">3+</td><td colspan="4" style="text-align:center">limit hand</td></tr>
-</table></div>
-<p>110 minipoints occur only in extremely rare occasions. Consider the following hand.</p>
-<div class="tiles"><div class="tilerow"><span class="tileline"><span class="tile">🀞︎</span><span class="tile">🀟︎</span><span class="tile">🀠︎</span><span class="tile">🀀︎</span><span class="tile">🀀︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span>&#160;<span class="tile">🀫︎</span><span class="tile">🀐︎</span><span class="tile">🀐︎</span><span class="tile">🀫︎</span>&#160;&#160;<span class="tile">🀫︎</span><span class="tile">🀘︎</span><span class="tile">🀘︎</span><span class="tile">🀫︎</span></span></div></div>
-<p>Suppose you are in the East round. If the dealer wins this hand by <span class="jap">ron</span> on <span class="LARGE"><span class="tile">🀄︎</span></span>, they get 20 (base) + 10 (closed hand <span class="jap">ron</span>) + 4 (pair of seat &amp; prevailing wind tiles) + 4 (open set of honors) + 32 (concealed quad of terminals) + 32 (concealed quad of terminals) = 102, rounded up to 110 minipoints. The score for 1 <span class="jap">han</span>–110 minipoints is 5300.</p>
-<p>If they win by <span class="jap">ron</span> on <span class="LARGE"><span class="tile">🀀︎</span></span>, on the other hand, they get more <span class="jap">han</span> (set of seat &amp; prevailing wind) but lower minipoints. This is because the minipoint contribution of the pair of <span class="LARGE"><span class="tile">🀄︎</span></span> (2) is smaller than that of the pair of <span class="LARGE"><span class="tile">🀀︎</span></span> (4). Since the score of 2 <span class="jap">han</span>–100 minipoints hand is the same as that of 3 <span class="jap">han</span>–50 minipoints hand, they obtain 9600 points.</p>
-<h3 id="chapter06-h9"><span class="secnum">6.3.3</span> Examples</h3>
-<p>Let’s see how scores change as we advance a hand. For each of the examples below, try calculating the scores for different winning tiles and for <span class="jap">tsumo</span> and <span class="jap">ron</span>.</p>
-<div class="box"><p class="boxtitle">Scoring 1</p><div class="tiles"><div class="tilerow"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀋︎</span><span class="tile">🀜︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀟︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span></span></div></div>
-<p>What are the scores?</p></div>
-<p>If you win this hand by <span class="jap">ron</span>, the hand has 1 <span class="jap">han</span> (Red Dragon) and 40 minipoints: 20 (base) + 10 (closed hand <span class="jap">ron</span>) + 8 (concealed set of honors) = 38, rounded up to 40, so you get 1300 points.</p>
-<p>If you win it by drawing <span class="LARGE"><span class="tile">🀛︎</span></span>, the hand has an additional <span class="jap">yaku</span>, <span class="jap">menzen tsumo</span> (Fully Concealed Hand), with 30 minipoints: 20 + 8 + 2 (<span class="jap">tsumo</span>) = 30. You thus get 500-1000 <span class="jap">tsumo</span> = 2000 points.</p>
-<p>However, if you win it by drawing <span class="LARGE"><span class="tile">🀞︎</span></span>, you get 40 minipoints because of the additional 2 minipoints for closed wait: <span class="LARGE"><span class="tile">🀝︎</span><span class="tile">🀟︎</span></span>. You thus get 700-1300 <span class="jap">tsumo</span> = 2700 points.</p>
-<p>Let’s say you draw <span class="LARGE"><span class="tile">🀝︎</span></span>. What would you discard?</p>
-<div class="tiles"><div class="tilerow labelled"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀋︎</span><span class="tile">🀜︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀟︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span>&#160;<span class="tile tagged"><span class="tag">Draw</span>🀝︎</span></span></div></div>
-<p>If you discard <span class="LARGE"><span class="tile">🀝︎</span></span>, the wait is <span class="LARGE"><span class="tile">🀛︎</span>-<span class="tile">🀞︎</span></span> (2 kinds–7 tiles). If you discard <span class="LARGE"><span class="tile">🀜︎</span></span>, however, you get a 3-way wait: <span class="LARGE"><span class="tile">🀝︎</span>-<span class="tile">🀠︎</span> <span class="tile">🀈︎</span></span> (3 kinds–7 tiles). Let’s say you choose the latter, resulting in the following hand. Now, let’s think about the scores for each winning tile.</p>
-<div class="box"><p class="boxtitle">Scoring 2</p><div class="tiles"><div class="tilerow"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀋︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀟︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span></span></div></div>
-<p>What are the scores?</p></div>
-<p>If you win this hand on <span class="LARGE"><span class="tile">🀈︎</span></span>, the hand is still 1 <span class="jap">han</span>–40 minipoints = 1300. However, if you win on <span class="LARGE"><span class="tile">🀝︎</span></span> or <span class="LARGE"><span class="tile">🀠︎</span></span>, the three tiles of <span class="LARGE"><span class="tile">🀝︎</span></span> within the hand are treated as a concealed set, giving you 4 additional minipoints: 20 (base) + 10 (closed <span class="jap">ron</span>) + 8 (set of <span class="tile">🀄︎</span>) + 4 (set of <span class="tile">🀝︎</span>) = 42, rounded up to 50 minipoints. You thus get 1 <span class="jap">han</span>–50 minipoints = 1600 points. If you win by <span class="jap">tsumo</span>, you get 40 minipoints so you will get 700-1300 = 2700 points.</p>
-<p>Let’s say you draw <span class="LARGE"><span class="tile">🀉︎</span></span>. What would you discard?</p>
-<div class="tiles"><div class="tilerow labelled"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀋︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀟︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span>&#160;<span class="tile tagged"><span class="tag">Draw</span>🀉︎</span></span></div></div>
-<p>If you discard <span class="LARGE"><span class="tile">🀋︎</span></span>, the wait is <span class="LARGE"><span class="tile">🀇︎</span>-<span class="tile">🀊︎</span></span>. Let’s think about the scores for each winning tile.</p>
-<div class="box"><p class="boxtitle">Scoring 3</p><div class="tiles"><div class="tilerow"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀟︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span></span></div></div>
-<p>What are the scores?</p></div>
-<p>If you win the hand by <span class="jap">ron</span> on <span class="LARGE"><span class="tile">🀊︎</span></span>, you get an additional <span class="jap">yaku</span>, <span class="jap">iipeiko</span> (Pure Double Chow), giving you 2 <span class="jap">han</span>–40 minipoints = 2600 points.</p>
-<p>If you win the hand by <span class="jap">tsumo</span>, the minipoints are now lower than before because you have side wait and only one concealed set; we cannot think of the three tiles of <span class="LARGE"><span class="tile">🀝︎</span></span> as a set any more. You get 2 <span class="jap">han</span>–30 minipoints if you draw <span class="LARGE"><span class="tile">🀇︎</span></span> (500-1000 <span class="jap">tsumo</span> = 2000), whereas you get 3 <span class="jap">han</span>–30 minipoints if you draw <span class="LARGE"><span class="tile">🀊︎</span></span> (1000-2000 <span class="jap">tsumo</span> = 4000).</p>
-<p>Let’s say you draw <span class="LARGE"><span class="tile">🀞︎</span></span>. What would you discard?</p>
-<div class="tiles"><div class="tilerow labelled"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀟︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span>&#160;<span class="tile tagged"><span class="tag">Draw</span>🀞︎</span></span></div></div>
-<p>Discarding <span class="LARGE"><span class="tile">🀟︎</span></span> is the best option. To understand why, let’s think about the scores.</p>
-<div class="box"><p class="boxtitle">Scoring 4</p><div class="tiles"><div class="tilerow"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀞︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span></span></div></div>
-<p>What are the scores?</p></div>
-<p>Notice that the wait and the potential <span class="jap">han</span> counts did not change at all. However, you get increased minipoints because you now have the concealed set of <span class="LARGE"><span class="tile">🀝︎</span></span> back again. You will get 2 <span class="jap">han</span>–50 minipoints = 3200 points if you win by <span class="jap">ron</span> on <span class="LARGE"><span class="tile">🀊︎</span></span>. If you draw <span class="LARGE"><span class="tile">🀊︎</span></span>, you will get 3 <span class="jap">han</span>–40 minipoints, giving you 1300-2600 <span class="jap">tsumo</span> = 5200 points.</p>
-<p>Let’s say you draw another <span class="LARGE"><span class="tile">🀞︎</span></span>. What would you discard?</p>
-<div class="tiles"><div class="tilerow labelled"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀞︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span>&#160;<span class="tile tagged"><span class="tag">Draw</span>🀞︎</span></span></div></div>
-<p>The best discard is <span class="LARGE"><span class="tile">🀊︎</span></span>, which makes this hand a <span class="jap">toitoi</span> (All Pungs) hand, as follows.</p>
-<div class="box"><p class="boxtitle">Scoring 5</p><div class="tiles"><div class="tilerow"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀉︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀞︎</span><span class="tile">🀞︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span></span></div></div>
-<p>What are the scores?</p></div>
-<p>The hand has three concealed sets already, giving you at least <span class="jap">san anko</span> (Three Concealed Pungs) in addition to <span class="jap">toitoi</span> and Red Dragon. Now you no longer need any tedious minipoints calculation. If you win this hand by <span class="jap">tsumo</span>, it is <span class="jap">yakuman</span> (<span class="jap">su anko</span>; Four Concealed Pungs). If you win it by <span class="jap">ron</span>, you get five <span class="jap">han</span> (<span class="jap">toitoi</span>, <span class="jap">san anko</span>, and Red Dragon); it is <span class="jap">mangan</span> regardless of minipoints.</p>
-<h2 id="chapter06-h10"><span class="secnum">6.4</span> Scoring tables</h2>
-<div class="float"><p><span class="footnotesize">
-<span class="caption"><strong>Table 6.10.</strong> Scores for non-dealer</span> <a id="l-tbl-scores1"></a></span></p>
-<table class="grid toprule bottomrule">
-<tr class="rule"><td style="text-align:left">Minipoints</td><td style="text-align:center">1 <span class="jap">han</span></td><td style="text-align:center">2 <span class="jap">han</span></td><td style="text-align:center">3 <span class="jap">han</span></td><td style="text-align:center">4 <span class="jap">han</span></td></tr>
-<tr><td style="text-align:left">20</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center">—</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">—</td><td style="text-align:center">(400-700)</td><td style="text-align:center">(700-1300)</td><td style="text-align:center">(1300-2600)</td></tr>
-<tr><td style="text-align:left">25</td><td style="text-align:center">—</td><td style="text-align:center">1600</td><td style="text-align:center">3200</td><td style="text-align:center">6400</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center">(800-1600)</td><td style="text-align:center">(1600-3200)</td></tr>
-<tr><td style="text-align:left">30</td><td style="text-align:center">1000</td><td style="text-align:center">2000</td><td style="text-align:center">3900</td><td style="text-align:center">7700</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(300-500)</td><td style="text-align:center">(500-1000)</td><td style="text-align:center">(1000-2000)</td><td style="text-align:center">(2000-3900)</td></tr>
-<tr><td style="text-align:left">40</td><td style="text-align:center">1300</td><td style="text-align:center">2600</td><td style="text-align:center">5200</td><td style="text-align:center">8000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(400-700)</td><td style="text-align:center">(700-1300)</td><td style="text-align:center">(1300-2600)</td><td style="text-align:center">(2000-4000)</td></tr>
-<tr><td style="text-align:left">50</td><td style="text-align:center">1600</td><td style="text-align:center">3200</td><td style="text-align:center">6400</td><td style="text-align:center">8000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(400-800)</td><td style="text-align:center">(800-1600)</td><td style="text-align:center">(1600-3200)</td><td style="text-align:center">(2000-4000)</td></tr>
-<tr><td style="text-align:left">60</td><td style="text-align:center">2000</td><td style="text-align:center">3900</td><td style="text-align:center">7700</td><td style="text-align:center">8000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(500-1000)</td><td style="text-align:center">(1000-2000)</td><td style="text-align:center">(2000-3900)</td><td style="text-align:center">(2000-4000)</td></tr>
-<tr><td style="text-align:left">70</td><td style="text-align:center">2300</td><td style="text-align:center">4500</td><td style="text-align:center">8000</td><td style="text-align:center">8000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(600-1200)</td><td style="text-align:center">(1200-2300)</td><td style="text-align:center">(2000-4000)</td><td style="text-align:center">(2000-4000)</td></tr>
-<tr><td style="text-align:left">80</td><td style="text-align:center">2600</td><td style="text-align:center">5200</td><td style="text-align:center">8000</td><td style="text-align:center">8000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(700-1300)</td><td style="text-align:center">(1300-2600)</td><td style="text-align:center">(2000-4000)</td><td style="text-align:center">(2000-4000)</td></tr>
-<tr><td style="text-align:left">90</td><td style="text-align:center">2900</td><td style="text-align:center">5800</td><td style="text-align:center">8000</td><td style="text-align:center">8000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(800-1500)</td><td style="text-align:center">(1500-2900)</td><td style="text-align:center">(2000-4000)</td><td style="text-align:center">(2000-4000)</td></tr>
-<tr><td style="text-align:left">100</td><td style="text-align:center">3200</td><td style="text-align:center">6400</td><td style="text-align:center">8000</td><td style="text-align:center">8000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(800-1600)</td><td style="text-align:center">(1600-3200)</td><td style="text-align:center">(2000-4000)</td><td style="text-align:center">(2000-4000)</td></tr>
-<tr><td style="text-align:left">110</td><td style="text-align:center">3600</td><td style="text-align:center">7100</td><td style="text-align:center">8000</td><td style="text-align:center">8000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">—</td><td style="text-align:center">(1800-3600)</td><td style="text-align:center">(2000-4000)</td><td style="text-align:center">(2000-4000)</td></tr>
-</table>
-<p><span class="footnotesize"><br/>
-<em>Note:</em> Numbers in parentheses are <span class="jap">tsumo</span> scores.
-</span></p></div>
-<div class="float"><p><span class="small">
-<span class="caption"><strong>Table 6.11.</strong> Scores for dealer</span> <a id="l-tbl-scores2"></a></span></p>
-<table class="grid toprule bottomrule">
-<tr class="rule"><td style="text-align:left">Minipoints</td><td style="text-align:center">1 <span class="jap">han</span></td><td style="text-align:center">2 <span class="jap">han</span></td><td style="text-align:center">3 <span class="jap">han</span></td><td style="text-align:center">4 <span class="jap">han</span></td></tr>
-<tr><td style="text-align:left">20</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center">—</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">—</td><td style="text-align:center">(700)</td><td style="text-align:center">(1300)</td><td style="text-align:center">(2600)</td></tr>
-<tr><td style="text-align:left">25</td><td style="text-align:center">—</td><td style="text-align:center">2400</td><td style="text-align:center">4800</td><td style="text-align:center">9600</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center">(1600)</td><td style="text-align:center">(3200)</td></tr>
-<tr><td style="text-align:left">30</td><td style="text-align:center">1500</td><td style="text-align:center">2900</td><td style="text-align:center">5800</td><td style="text-align:center">11600</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(500)</td><td style="text-align:center">(1000)</td><td style="text-align:center">(2000)</td><td style="text-align:center">(3900)</td></tr>
-<tr><td style="text-align:left">40</td><td style="text-align:center">2000</td><td style="text-align:center">3900</td><td style="text-align:center">7700</td><td style="text-align:center">12000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(700)</td><td style="text-align:center">(1300)</td><td style="text-align:center">(2600)</td><td style="text-align:center">(4000)</td></tr>
-<tr><td style="text-align:left">50</td><td style="text-align:center">2400</td><td style="text-align:center">4800</td><td style="text-align:center">9600</td><td style="text-align:center">12000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(800)</td><td style="text-align:center">(1600)</td><td style="text-align:center">(3200)</td><td style="text-align:center">(4000)</td></tr>
-<tr><td style="text-align:left">60</td><td style="text-align:center">2900</td><td style="text-align:center">5800</td><td style="text-align:center">11600</td><td style="text-align:center">12000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(1000)</td><td style="text-align:center">(2000)</td><td style="text-align:center">(3900)</td><td style="text-align:center">(4000)</td></tr>
-<tr><td style="text-align:left">70</td><td style="text-align:center">3400</td><td style="text-align:center">6800</td><td style="text-align:center">12000</td><td style="text-align:center">12000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(1200)</td><td style="text-align:center">(2300)</td><td style="text-align:center">(4000)</td><td style="text-align:center">(4000)</td></tr>
-<tr><td style="text-align:left">80</td><td style="text-align:center">3900</td><td style="text-align:center">7700</td><td style="text-align:center">12000</td><td style="text-align:center">12000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(1300)</td><td style="text-align:center">(2600)</td><td style="text-align:center">(4000)</td><td style="text-align:center">(4000)</td></tr>
-<tr><td style="text-align:left">90</td><td style="text-align:center">4400</td><td style="text-align:center">8700</td><td style="text-align:center">12000</td><td style="text-align:center">12000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(1500)</td><td style="text-align:center">(2900)</td><td style="text-align:center">(4000)</td><td style="text-align:center">(4000)</td></tr>
-<tr><td style="text-align:left">100</td><td style="text-align:center">4800</td><td style="text-align:center">9600</td><td style="text-align:center">12000</td><td style="text-align:center">12000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">(1600)</td><td style="text-align:center">(3200)</td><td style="text-align:center">(4000)</td><td style="text-align:center">(4000)</td></tr>
-<tr><td style="text-align:left">110</td><td style="text-align:center">5300</td><td style="text-align:center">10600</td><td style="text-align:center">12000</td><td style="text-align:center">12000</td></tr>
-<tr><td style="text-align:left">&#160;</td><td style="text-align:center">—</td><td style="text-align:center">(3600)</td><td style="text-align:center">(4000)</td><td style="text-align:center">(4000)</td></tr>
-</table>
-<p><span class="small"><br/>
-<em>Note:</em> Numbers in parentheses are <span class="jap">tsumo</span> scores.
-</span></p></div>
-<section class="footnotes" epub:type="footnotes"><hr/>
-<aside epub:type="footnote" id="chapter06-fn1"><p><a href="#chapter06-fn1-ref">1</a> In my impression, roughly 75 % of the hands we encounter can be covered by the basic methods.</p></aside>
-<aside epub:type="footnote" id="chapter06-fn2"><p><a href="#chapter06-fn2-ref">2</a> Since <span class="jap">bai</span> means “twice” or “double” in Japanese, <span class="jap">baiman</span> literally means double <span class="jap">mangan</span> in Japanese. Similarly, <span class="jap">sanbai</span> means “triple,” so <span class="jap">sanbaiman</span> literally means triple <span class="jap">mangan</span>.</p></aside>
-<aside epub:type="footnote" id="chapter06-fn3"><p><a href="#chapter06-fn3-ref">3</a> Note that we are only talking about open <span class="jap">toitoi</span> here. A closed <span class="jap">toitoi</span> does not require a minipoint calculation under any circumstance. If you win it by <span class="jap">tsumo</span>, it’s <span class="jap">yakuman</span> (<span class="jap">su anko</span>; Four Concealed Pungs); if you win it by <span class="jap">ron</span>, it’s at least <span class="jap">mangan</span> (<span class="jap">toitoi</span> and <span class="jap">san anko</span>).</p></aside>
-<aside epub:type="footnote" id="chapter06-fn4"><p><a href="#chapter06-fn4-ref">4</a> Of course, one cannot claim <span class="jap">pinfu</span> with an open hand. What we mean by “open <span class="jap">pinfu</span>” here is that the hand shape satisfies the conditions for <span class="jap">pinfu</span>.</p></aside>
-<aside epub:type="footnote" id="chapter06-fn5"><p><a href="#chapter06-fn5-ref">5</a> As mentioned, there are two exceptions to this calculation rule. First, it is decided that <span class="jap">pinfu</span> <span class="jap">tsumo</span> is <em>always</em> 20 minipoints. Second, the so-called “open <span class="jap">pinfu</span> hand is <em>always</em> 30 minipoints whether <span class="jap">ron</span> or <span class="jap">tsumo</span>.</p></aside>
-<aside epub:type="footnote" id="chapter06-fn6"><p><a href="#chapter06-fn6-ref">6</a> This is the case with EMA rules and <span class="jap">Tenhou</span> rules, but this is not a universally adopted rule.</p></aside>
-</section>
+  <h1 id="chapter06">
+    <span class="chapnum">Chapter 6</span>
+    Scoring
+  </h1>
+  <a id="l-ch-scores"></a>
+  <p>The scoring system in mahjong is quite complex. Getting proficiency in score calculation requires a lot of practice. The good news is that scoring is automatically done once you win a hand when you play online. Even when you play offline, you can usually count on your fellow players to help you get the correct score once you win a hand.</p>
+  <p>However, you often need to calculate the (potential) scores of your hand <em>before</em> you win the hand. This is because a lot of important judgements you make during the game — riichi judgement, defense judgement, and melding judgement, among others — depend on the potential scores of your hand. Therefore, developing ability to calculate the scores correctly and quickly without any help of others is of utmost importance. I introduce some efficient methods of score calculation in this chapter before we discuss riichi, defense, and melding judgements in the subsequent chapters.</p>
+  <h2 id="chapter06-h1"><span class="secnum">6.1</span> Three steps in score calculation</h2>
+  <p>Every rule book of mahjong has comprehensive scoring tables (similar to Tables <a href="chapter06.xhtml#l-tbl-scores1">6.10</a> and <a href="chapter06.xhtml#l-tbl-scores2">6.11</a> at the end of this chapter) that show all possible scores for all possible minipoints (<span class="jap">fu</span>). Although such tables are a good reference to have, it is <em>not</em> very efficient to try to memorize everything in such tables.</p>
+  <p>A more practical approach would be to focus on a small number of frequently observed patterns of scoring and memorize them correctly, while ignoring other, less important ones. Before introducing some shortcuts to do efficient scoring, let’s first review the three required steps in score calculation, summarized in a box on the next page.</p>
+  <div class="box">
+    <p class="boxtitle">Three steps in score calculation</p>
+    <dl>
+      <dt>Step 1:</dt>
+      <dd><strong>Count the number of <span class="jap">han</span>.</strong><br />
+        First, you need to figure out how many <span class="jap">han</span> a hand has. If a hand has five or more <span class="jap">han</span>, skip Step 2 and go directly to Step 3. If not, proceed to Step 2.</dd>
+      <dt>Step 2:</dt>
+      <dd><strong>Figure out the minipoints.</strong><br />
+        When a hand has four or less <span class="jap">han</span>, you then need to know the hand’s minipoints. This does not mean, however, that you always need to do some maths to get the correct minipoints. We will discuss some practical shortcuts below.</dd>
+      <dt>Step 3:</dt>
+      <dd><strong>Get the score.</strong><br />
+        Based on the number of <span class="jap">han</span> (and possibly minipoints), you get the score. You will have to memorize some score patterns.</dd>
+    </dl>
+  </div>
+  <p>In the remainder of this chapter, I will first introduce basic methods of score calculation in Section <a href="chapter06.xhtml#l-sec-scores1">6.2</a>. The basic methods involve using some shortcuts in Step 2 above. Once you master the basic methods, you will be able to calculate scores correctly most of the time.<a epub:type="noteref" class="noteref" id="chapter06-fn1-ref" href="#chapter06-fn1">1</a> When you master the contents of Section <a href="chapter06.xhtml#l-sec-scores1">6.2</a>, you may skip Section <a href="chapter06.xhtml#l-sec-scores2">6.3</a> and proceed to the next chapter. Section <a href="chapter06.xhtml#l-sec-scores2">6.3</a> covers more advanced methods of score calculation, which would be necessary only in exceptional cases. This involves an exact calculation of minipoints in Step 2 above.</p>
+  <h2 id="chapter06-h2"><span class="secnum">6.2</span> Basic scoring</h2>
+  <a id="l-sec-scores1"></a>
+  <h3 id="chapter06-h3">1. Counting the number of <span class="jap">han</span></h3>
+  <p>Step 1 in score calculation is counting the number of <span class="jap">han</span> in a hand. This is the most important part in score calculation, and there is no useful shortcut here. You need to be able to identify all the <span class="jap">yaku</span> in a hand as well as the associated <span class="jap">han</span> counts for each.</p>
+  <p>A good way to practice this is to try to beat the automatic score counting on <span class="jap">Tenhou</span>. Whenever someone wins a hand, <span class="jap">Tenhou</span> displays all the <span class="jap">yaku</span> and the associated <span class="jap">han</span> counts one after another in a few seconds. Try to identify all the <span class="jap">yaku</span> of your opponent’s hand before they get displayed automatically.</p>
+  <h4>Scores for limit hands</h4>
+  <p>When a hand has five or more <span class="jap">han</span>, the hand is a limit hand. Scores of limit hands do not depend on minipoints so we can go directly to Step 3. To get the score for a given <span class="jap">han</span> count, we utilize Table <a href="chapter06.xhtml#l-tbl-limithands">6.1</a>. This is something you need to memorize.</p>
+  <div class="float">
+    <p><span class="small">
+        <span class="caption"><strong>Table 6.1.</strong> Scores for limit hands</span> <a id="l-tbl-limithands"></a></span></p>
+    <table class="grid toprule bottomrule">
+      <tr>
+        <td style="text-align:left"><span class="jap">Han</span></td>
+        <td style="text-align:left">Name</td>
+        <td colspan="2" style="text-align:center"><span class="jap">Ron</span></td>
+        <td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td>
+      </tr>
+      <tr class="rule">
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+      </tr>
+      <tr>
+        <td style="text-align:left">5</td>
+        <td style="text-align:left"><span class="jap">mangan</span></td>
+        <td style="text-align:right"><strong>8000</strong></td>
+        <td style="text-align:right">12000</td>
+        <td style="text-align:right">2000-4000</td>
+        <td style="text-align:right">4000-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">6–7</td>
+        <td style="text-align:left"><span class="jap">haneman</span></td>
+        <td style="text-align:right">12000</td>
+        <td style="text-align:right">18000</td>
+        <td style="text-align:right">3000-6000</td>
+        <td style="text-align:right">6000-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">8–10</td>
+        <td style="text-align:left"><span class="jap">baiman</span></td>
+        <td style="text-align:right">16000</td>
+        <td style="text-align:right">24000</td>
+        <td style="text-align:right">4000-8000</td>
+        <td style="text-align:right">8000-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">11–12</td>
+        <td style="text-align:left"><span class="jap">sanbaiman</span></td>
+        <td style="text-align:right">24000</td>
+        <td style="text-align:right">36000</td>
+        <td style="text-align:right">6000-12000</td>
+        <td style="text-align:right">12000-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">13+<sup>*</sup></td>
+        <td style="text-align:left"><span class="jap">yakuman</span></td>
+        <td style="text-align:right">32000</td>
+        <td style="text-align:right">48000</td>
+        <td style="text-align:right">8000-16000</td>
+        <td style="text-align:right">16000-all</td>
+      </tr>
+      <tr>
+        <td colspan="6" style="text-align:left"><span class="footnotesize"><sup>*</sup> A hand with 13+ <span class="jap">han</span> is scored as a <span class="jap">sanbaiman</span> with the revised EMA rules.</span></td>
+      </tr>
+    </table>
+  </div>
+  <p>As you can see, there are some regularities and redundancies that make it relatively easy to memorize this table. The most important score of all is 8000 (<span class="jap">mangan ron</span> for non-dealer). This is the basis of all the other scores in this table. For example, <span class="jap">haneman</span> scores are 1.5 times <span class="jap">mangan</span> scores, <span class="jap">baiman</span> scores are two times <span class="jap">mangan</span> scores, <span class="jap">sanbaiman</span> scores are three times <span class="jap">mangan</span> scores,<a epub:type="noteref" class="noteref" id="chapter06-fn2-ref" href="#chapter06-fn2">2</a> and <span class="jap">yakuman</span> scores are four times <span class="jap">mangan</span> scores.
+    In addition, scores for dealer are exactly 1.5 times the corresponding scores for non-dealer in all limit hands. Finally, scores for <span class="jap">tsumo</span> (self draw) cases are simple and straightforward; the dealer pays one half of the total, and each of the two non-dealers pays one fourth of the total. For example, in the case of <span class="jap">mangan tsumo</span> (8000), the dealer pays 4000 and non-dealers pay 2000 each.</p>
+  <h3 id="chapter06-h4">2. Figuring out the minipoints</h3>
+  <p>When a hand has four or less <span class="jap">han</span>, you have to know the minipoints. As I pointed out earlier, this does not mean that you always have to count all the minipoint contributions from all the melds and wait in a hand. Such a calculation is required only in special cases. Instead, you can use the chart in Figure <a href="chapter06.xhtml#l-fig-mini">6.1</a> that summarizes the six most frequently observed patterns you need to memorize.</p>
+  <div class="float">
+    <div class="box">
+      <p class="boxtitle">Shortcut for minipoint calculation</p>
+      <ol>
+        <li><span class="jap">chiitoitsu</span> ⇒ <strong>always</strong> 25 minipoints</li>
+        <li>A hand has one or more quads ⇒ Don’t bother.</li>
+        <li><span class="jap">toitoi</span> ⇒ <strong>almost always</strong> 40 minipoints</li>
+        <li>
+          <p><span class="jap">Pinfu</span></p>
+          <ul>
+            <li><span class="jap">ron</span> ⇒ <strong>always</strong> 30 minipoints</li>
+            <li><span class="jap">tsumo</span> ⇒ <strong>always</strong> 20 minipoints</li>
+          </ul>
+        </li>
+        <li>
+          <p>Closed hand without <span class="jap">pinfu</span></p>
+          <ul>
+            <li><span class="jap">ron</span> ⇒ <strong>almost always</strong> 40 minipoints</li>
+            <li><span class="jap">tsumo</span> ⇒ <strong>almost always</strong> 30 minipoints</li>
+          </ul>
+        </li>
+        <li>Open hand ⇒ <strong>almost always</strong> 30 minipoints</li>
+      </ol>
+    </div>
+    <p><span class="caption"><strong>Figure 6.1.</strong> Six most observed patterns</span><a id="l-fig-mini"></a></p>
+  </div>
+  <p>You can use this Figure as a flowchart.
+    You first check if the hand is a <span class="jap">chiitoitsu</span> (Seven Pairs) hand. If it is, it is always 25 minipoints. If it is not, you then check if the hand has one or more quads (kongs). If it does, the hand is out of the scope of the basic methods. Ask for help from more experienced players after winning the hand. Advanced methods we discuss in Section <a href="chapter06.xhtml#l-sec-scores2">6.3</a> will cover this exceptional case.
+    Third, you check if the hand is <span class="jap">toitoi</span> (All Pungs).<a epub:type="noteref" class="noteref" id="chapter06-fn3-ref" href="#chapter06-fn3">3</a> If it is, it’s almost always 40 minipoints unless it is a <span class="jap">tanyao toitoi</span> hand that is likely to have 30 minipoints.</p>
+  <p>Once you rule out the first three cases (<span class="jap">chiitoitsu</span>, quads, and <span class="jap">toitoi</span>), the last three are the most important ones; the great majority of hands you see will be one of these three. Here, you check two things.
+    First, check if it is a <span class="jap">pinfu</span> hand. If it is, it’s always 30 minipoints (<span class="jap">ron</span>) or 20 minipoints (<span class="jap">tsumo</span>).
+    If it is not <span class="jap">pinfu</span>, you then check if it is a closed hand or an open hand. If it is a closed hand, it is <em>almost</em> always 40 minipoints (<span class="jap">ron</span>) or 30 minipoints (<span class="jap">tsumo</span>). If it is an open hand, it is <em>almost</em> always 30 minipoints whether you win it by <span class="jap">ron</span> or <span class="jap">tsumo</span>.</p>
+  <p>Because of the importance of the cases 4, 5, and 6 (<span class="jap">pinfu</span>, closed, and open hand), we will first discuss these three cases. We will then discuss cases 1 and 3 (<span class="jap">chiitoitsu</span> and <span class="jap">toitoi</span>), which are way more exceptional.</p>
+  <h4>What do we mean by “almost always”?</h4>
+  <p>Before getting to score calculation, let me explain what we mean when we say something is <em>almost</em> always X minipoints in cases 5 and 6 in Figure <a href="chapter06.xhtml#l-fig-mini">6.1</a>.
+    With a non-<span class="jap">toitoi</span> hand without quads, check if the hand has one or more concealed set of terminal/honor tiles or its equivalent. Recall that one concealed set of terminal/honor tiles is equivalent to <u>two open</u> sets of terminal/honor tiles or <u>two concealed</u> sets of simple tiles in minipoints.
+    Therefore, what we check is whether a hand has any of the following:</p>
+  <ul>
+    <li>at least <u>one concealed</u> set of terminal/honor tiles;</li>
+    <li>at least <u>two open</u> sets of terminal/honor tiles;</li>
+    <li><u>one open</u> set of terminal/honor tiles <em>and</em>
+      <u>one concealed</u> set of simples;
+    </li>
+    <li>at least <u>two concealed</u> sets of simples.</li>
+  </ul>
+  <p>When none of the four cases above applies to a non-<span class="jap">toitoi</span> hand without quads, the hand is <em>always</em> worth 40 minipoints if it is closed and won by <span class="jap">ron</span>, and <em>always</em> worth 30 minipoints in all other cases (i.e., closed <span class="jap">tsumo</span>, open <span class="jap">ron</span>, and open <span class="jap">tsumo</span>). Therefore, there is really no need to calculate minipoints for hands like the following:</p>
+  <div class="tiles">
+    <div class="tilerow"><span class="tileline"><span class="tile">🀇︎</span><span class="tile">🀇︎</span><span class="tile">🀜︎</span><span class="tile">🀝︎</span><span class="tile">🀑︎</span><span class="tile">🀒︎</span><span class="tile">🀓︎</span><span class="tile">🀖︎</span><span class="tile">🀗︎</span><span class="tile">🀘︎</span>&#160;<span class="tile">🀄︎</span><span class="tile sideways"><span class="turned">🀄︎</span></span><span class="tile">🀄︎</span></span><span class="tileline"><span class="tile">🀊︎</span><span class="tile">🀋︎</span><span class="tile">🀐︎</span><span class="tile">🀐︎</span><span class="tile">🀒︎</span><span class="tile">🀓︎</span><span class="tile">🀔︎</span>&#160;<span class="tile sideways"><span class="turned">🀀︎</span></span><span class="tile">🀀︎</span><span class="tile">🀀︎</span>&#160;<span class="tile">🀉︎</span><span class="tile">🀉︎</span><span class="tile sideways"><span class="turned">🀉︎</span></span>
+        <span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀍︎</span><span class="tile">🀎︎</span><span class="tile">🀑︎</span><span class="tile">🀒︎</span><span class="tile">🀓︎</span><span class="tile">🀕︎</span><span class="tile">🀕︎</span><span class="tile">🀖︎</span><span class="tile">🀗︎</span><span class="tile">🀘︎</span></span></div>
+  </div>
+  <p>With hands like these, we can simply check whether the win was a closed <span class="jap">ron</span>. If so, the hand has 40 minipoints; otherwise, it has 30 minipoints.</p>
+  <p>In addition, so-called “open <span class="jap">pinfu</span>” hands such as below <a epub:type="noteref" class="noteref" id="chapter06-fn4-ref" href="#chapter06-fn4">4</a> are <em>always</em> 30 minipoints. This is one of the two exceptions to minipoint calculation. For minipoint calculation, see Section <a href="chapter06.xhtml#l-sec-scores2">6.3</a>.</p>
+  <div class="tiles">
+    <div class="tilerow"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀜︎</span><span class="tile">🀝︎</span><span class="tile">🀑︎</span><span class="tile">🀒︎</span><span class="tile">🀓︎</span><span class="tile">🀕︎</span><span class="tile">🀖︎</span><span class="tile">🀗︎</span>&#160;<span class="tile sideways"><span class="turned">🀉︎</span></span><span class="tile">🀊︎</span><span class="tile">🀋︎</span></span></div>
+  </div>
+  <p>On the other hand, if a hand satisfies any of the four conditions above, we need to calculate the minipoints by actually counting and summing all the minipoint contributions from all the melds, the head, and the wait to determine the minipoints of a hand. We will discuss this in Section <a href="chapter06.xhtml#l-sec-scores2">6.3</a>.</p>
+  <h3 id="chapter06-h5">3. Getting the scores</h3>
+  <p>As Figure <a href="chapter06.xhtml#l-fig-mini">6.1</a> makes clear, the case of 30 minipoints is the most important pattern. We thus start with this pattern. We will then proceed to the cases of 40, 20, and 25 minipoints.</p>
+  <h4><span class="fbox">30 minipoints</span></h4>
+  <p>You get 30 minipoints when you get:</p>
+  <ul>
+    <li><span class="jap">pinfu ron</span> (always);</li>
+    <li>closed hand <span class="jap">tsumo</span> (almost always); or</li>
+    <li>open hand <span class="jap">ron</span> / <span class="jap">tsumo</span> (almost always).</li>
+  </ul>
+  <p>Scores for 30 minipoints are summarized in Table <a href="chapter06.xhtml#l-tbl-30mp">6.2</a>.</p>
+  <div class="float">
+    <p><span class="small"><span class="caption"><strong>Table 6.2.</strong> Scores for 30 minipoints</span> <a id="l-tbl-30mp"></a></span></p>
+    <table class="grid toprule bottomrule">
+      <tr>
+        <td style="text-align:left"><span class="jap">Han</span></td>
+        <td colspan="2" style="text-align:center"><span class="jap">Ron</span></td>
+        <td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td>
+      </tr>
+      <tr class="rule">
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+      </tr>
+      <tr>
+        <td style="text-align:left">1</td>
+        <td style="text-align:right">1000</td>
+        <td style="text-align:right">1500</td>
+        <td style="text-align:right">300-500</td>
+        <td style="text-align:right">500-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">2</td>
+        <td style="text-align:right">2000</td>
+        <td style="text-align:right">2900</td>
+        <td style="text-align:right">500-1000</td>
+        <td style="text-align:right">1000-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">3</td>
+        <td style="text-align:right">3900</td>
+        <td style="text-align:right">5800</td>
+        <td style="text-align:right">1000-2000</td>
+        <td style="text-align:right">2000-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">4</td>
+        <td style="text-align:right">7700</td>
+        <td style="text-align:right">11600</td>
+        <td style="text-align:right">2000-3900</td>
+        <td style="text-align:right">3900-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">5+</td>
+        <td colspan="4" style="text-align:center">limit hand</td>
+      </tr>
+    </table>
+  </div>
+  <p>Compared with the limit hands table (Table <a href="chapter06.xhtml#l-tbl-limithands">6.1</a>), the regularities in the 30 minipoints table are less precise. For example, scores for dealer are only <em>roughly</em> 1.5 times those for non-dealer; <span class="jap">tsumo</span> scores are sometimes slightly bigger than the corresponding <span class="jap">ron</span> scores. For example, one-<span class="jap">han tsumo</span> (300-500) gives you 300+300+500 = 1100, which is slightly bigger than one-<span class="jap">han ron</span> (1000).</p>
+  <p>Therefore, it would be more efficient if we just memorize these patterns as they are, rather than trying to simplify them. Japanese players tend to memorize Table <a href="chapter06.xhtml#l-tbl-30mp">6.2</a> column-wise, as follows:</p>
+  <div class="box">
+    <p class="boxtitle">Scores for 30 minipoints</p>
+    <ul>
+      <li><span class="jap">ron</span> (non-dealer): 10, 20, 39, 77</li>
+      <li><span class="jap">ron</span> (dealer): 15, 29, 58, 116</li>
+      <li><span class="jap">tsumo</span> (non-dealer): 3-5, 5-10, 10-20, 20-39</li>
+    </ul>
+  </div>
+  <p>The benefit of memorizing this score table column-wise is that scores get (roughly) twice as big for an additional <span class="jap">han</span>. Moreover, if we memorize the <span class="jap">tsumo</span> scores for non-dealer, we can easily derive those for dealer.
+    When I was trying to memorize these, I used to recite these sequences a number of times so that they get beaten into my head.</p>
+  <h4><span class="fbox">40 minipoints</span></h4>
+  <p>You get 40 minipoints when you get:</p>
+  <ul>
+    <li>non-<span class="jap">pinfu</span> closed hand <span class="jap">ron</span> (almost always); or</li>
+    <li><span class="jap">toitoi</span> <span class="jap">ron</span> / <span class="jap">tsumo</span> (almost always).</li>
+  </ul>
+  <p>Scores for 40 minipoints are summarized in Table <a href="chapter06.xhtml#l-tbl-40mp">6.3</a>.</p>
+  <div class="float">
+    <p><span class="small"><span class="caption"><strong>Table 6.3.</strong> Scores for 40 minipoints</span> <a id="l-tbl-40mp"></a></span></p>
+    <table class="grid toprule bottomrule">
+      <tr>
+        <td style="text-align:left"><span class="jap">Han</span></td>
+        <td colspan="2" style="text-align:center"><span class="jap">Ron</span></td>
+        <td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td>
+      </tr>
+      <tr class="rule">
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+      </tr>
+      <tr>
+        <td style="text-align:left">1</td>
+        <td style="text-align:right">1300</td>
+        <td style="text-align:right">2000</td>
+        <td style="text-align:right">400-700</td>
+        <td style="text-align:right">700-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">2</td>
+        <td style="text-align:right">2600</td>
+        <td style="text-align:right">3900</td>
+        <td style="text-align:right">700-1300</td>
+        <td style="text-align:right">1300-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">3</td>
+        <td style="text-align:right">5200</td>
+        <td style="text-align:right">7700</td>
+        <td style="text-align:right">1300-2600</td>
+        <td style="text-align:right">2600-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">4+</td>
+        <td colspan="4" style="text-align:center">limit hand</td>
+      </tr>
+    </table>
+  </div>
+  <p>Just like we did with scores for 30 minipoints, I recommend you memorize this column-wise.</p>
+  <div class="box">
+    <p class="boxtitle">Scores for 40 minipoints</p>
+    <ul>
+      <li><span class="jap">ron</span> (non-dealer): 13, 26, 52, <span class="jap">mangan</span></li>
+      <li><span class="jap">ron</span> (dealer): 20, 39, 77, <span class="jap">mangan</span></li>
+      <li><span class="jap">tsumo</span> (non-dealer): 4-7, 7-13, 13-26, <span class="jap">mangan</span></li>
+    </ul>
+  </div>
+  <p>The good news is that the <span class="jap">ron</span> score sequence for non-dealer —13, 26, 52— is a geometric progression; 13 × 2 = 26, and 26 × 2 = 52. Also, the <span class="jap">ron</span> scores for dealer —20, 39, 77— should look familiar to you if you have already memorized the 30 minipoints <span class="jap">ron</span> scores for non-dealer —10, 20, 39, 77.</p>
+  <h4><span class="fbox">20 minipoints</span> <span class="jap">(pinfu tsumo)</span></h4>
+  <p>Scores for 20 minipoints are summarized in Table <a href="chapter06.xhtml#l-tbl-20mp">6.4</a>. This table is special in the sense that it does not have the <span class="jap">ron</span> score component nor the one-<span class="jap">han</span> row. This is because you get 20 minipoints only when you get <span class="jap">pinfu + tsumo</span> (hence we have at least two <span class="jap">han</span>). Even though this is a special case, <span class="jap">pinfu</span> + <span class="jap">tsumo</span> is far from a rare occurrence. It is thus important to know how to get the correct scores for this case.</p>
+  <div class="float">
+    <p><span class="small"><span class="caption"><strong>Table 6.4.</strong> Scores for 20 minipoints</span> <a id="l-tbl-20mp"></a></span></p>
+    <table class="grid toprule bottomrule">
+      <tr>
+        <td style="text-align:left"><span class="jap">Han</span></td>
+        <td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td>
+      </tr>
+      <tr class="rule">
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+      </tr>
+      <tr>
+        <td style="text-align:left">2</td>
+        <td style="text-align:right">400-700</td>
+        <td style="text-align:right">700-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">3</td>
+        <td style="text-align:right">700-1300</td>
+        <td style="text-align:right">1300-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">4</td>
+        <td style="text-align:right">1300-2600</td>
+        <td style="text-align:right">2600-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">5+</td>
+        <td colspan="2" style="text-align:center">limit hand</td>
+      </tr>
+    </table>
+  </div>
+  <p>Notice that there is an interesting similarity between the 20 minipoints table (Table <a href="chapter06.xhtml#l-tbl-20mp">6.4</a>) and the 40 minipoints table (Table <a href="chapter06.xhtml#l-tbl-40mp">6.3</a>). The scoring patterns are almost identical, except that the required number of <span class="jap">han</span> to get a certain score is one <span class="jap">han</span> smaller for 40 minipoints than for 20 minipoints; that is, to get 400-700, we need 2 <span class="jap">han</span> with 20 minipoints, whereas we only need 1 <span class="jap">han</span> with 40 minipoints.</p>
+  <p>This is not a coincidence. In general, when we double the minipoints, we need one less <span class="jap">han</span> to get the same score. For example, a 3 <span class="jap">han</span>–30 minipoints hand and a 2 <span class="jap">han</span>–60 minipoints hand have the same score (3900 for non-dealer; 5800 for dealer); a 2 <span class="jap">han</span>–25 minipoints hand and a 1 <span class="jap">han</span>–50 minipoints hand have the same score (1600 for non-dealer; 2400 for dealer). Therefore, once you memorize scores for 30 minipoints, we can easily deduce scores for hands with 60 minipoints. Similarly, we can deduce scores for hands with 50 or 80 minipoints once we memorize scores for 25 or 40 minipoints, respectively.</p>
+  <h4><span class="fbox">25 minipoints</span> <span class="jap">(chiitoitsu)</span></h4>
+  <p>The final case we cover as part of the basic scoring is scores for a <span class="jap">chiitoitsu</span> hand. As <span class="jap">chiitoitsu</span> is a rather exceptional <span class="jap">yaku</span>, it is given exceptional minipoints — 25 minipoints.
+    Scores for 25 minipoints are summarized in Table <a href="chapter06.xhtml#l-tbl-25mp">6.5</a>.</p>
+  <div class="float">
+    <p><span class="small"><span class="caption"><strong>Table 6.5.</strong> Scores for 25 minipoints</span> <a id="l-tbl-25mp"></a></span></p>
+    <table class="grid toprule bottomrule">
+      <tr>
+        <td style="text-align:left"><span class="jap">Han</span></td>
+        <td colspan="2" style="text-align:center"><span class="jap">Ron</span></td>
+        <td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td>
+      </tr>
+      <tr class="rule">
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+      </tr>
+      <tr>
+        <td style="text-align:left">2</td>
+        <td style="text-align:right">1600</td>
+        <td style="text-align:right">2400</td>
+        <td style="text-align:right">&#160;</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">3</td>
+        <td style="text-align:right">3200</td>
+        <td style="text-align:right">4800</td>
+        <td style="text-align:right">800-1600</td>
+        <td style="text-align:right">1600-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">4</td>
+        <td style="text-align:right">6400</td>
+        <td style="text-align:right">9600</td>
+        <td style="text-align:right">1600-3200</td>
+        <td style="text-align:right">3200-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">5+</td>
+        <td colspan="4" style="text-align:center">limit hand</td>
+      </tr>
+    </table>
+  </div>
+  <p>Since <span class="jap">chiitoitsu</span> is itself a two-<span class="jap">han</span> <span class="jap">yaku</span>, the scoring table only starts with two <span class="jap">han</span> for <span class="jap">ron</span> and three <span class="jap">han</span> for <span class="jap">tsumo</span>.
+    Again, we memorize this table column-wise.</p>
+  <div class="box">
+    <p class="boxtitle">Scores for 25 minipoints</p>
+    <ul>
+      <li><span class="jap">ron</span> (non-dealer): 16, 32, 64, <span class="jap">mangan</span></li>
+      <li><span class="jap">ron</span> (dealer): 24, 48, 96, <span class="jap">mangan</span></li>
+      <li><span class="jap">tsumo</span> (non-dealer): 8-16, 16-32, <span class="jap">mangan</span></li>
+    </ul>
+  </div>
+  <p>All the sequences are a geometric progression, making it relatively easy to memorize.</p>
+  <h4>Practice, practice, practice</h4>
+  <p>This completes the basic methods of score calculation. Memorizing all the scores for limit hands as well as the cases of 30, 40, 20, and 25 minipoints should be more than enough.
+    Of course, no one will be able to master this method just by reading and understanding the materials in this chapter. You would need to actually practice what you have learned, and you will have to do so repeatedly.</p>
+  <div class="box">
+    <p><span class="small"><strong><span class="normalsize">Notes on <span class="jap">pinfu tsumo</span></span></strong></span></p>
+    <p><span class="small">One of the common mistakes that beginners tend to make is to claim 1000-2000 for riichi + <span class="jap">pinfu + tsumo</span> (mistaking 3 <span class="jap">han</span>–20 minipoints for 3 <span class="jap">han</span>–30 minipoints) or claim <span class="jap">mangan</span> for riichi + <span class="jap">pinfu + tsumo + dora</span> (mistaking 4 <span class="jap">han</span>–20 minipoints for 4 <span class="jap">han</span>–40 minipoints).
+        If you have trouble wrapping your head around why <span class="jap">pinfu + tsumo</span> hands are given lower minipoints, knowing the origin of this rule might be helpful.
+        The <span class="jap">yaku</span> <span class="jap">pinfu</span> is realized when a hand has no component that generates an additional minipoint. A <span class="jap">pinfu</span> hand cannot have a set, edge wait, closed wait, single wait, or a pair of value tiles because they all generate an additional minipoint. Recall that <span class="jap">tsumo</span> also generates 2 minipoints. Therefore, logically speaking, <span class="jap">pinfu</span> cannot be claimed when you win it by <span class="jap">tsumo</span>. In fact, some traditional mahjong rule sets do not allow a combination of <span class="jap">pinfu</span> and <span class="jap">tsumo</span>.
+        Under such rule sets, when you win a <span class="jap">pinfu</span>-only hand by <span class="jap">tsumo</span>, you are allowed to claim <span class="jap">tsumo</span> only, giving you 1 <span class="jap">han</span>–30 minipoints (20 base minipoints + 2 minipoints for <span class="jap">tsumo</span> = 22, rounded up to 30 minipoints), which gives you 300-500. </span></p>
+    <p><span class="small">However, some people thought that this is a bit unfair, claiming that a <span class="jap">pinfu tsumo</span> hand should be given a higher score than a <span class="jap">tsumo</span>-only hand. At the same time, they recognized that the score for <span class="jap">pinfu + tsumo</span> should be lower than that for a “proper” 2-<span class="jap">han</span> <span class="jap">tsumo</span> hand (e.g., <span class="jap">tanyao + tsumo</span>).
+        Therefore, they decided that <span class="jap">pinfu + tsumo</span> should be placed in between these two — 1 <span class="jap">han</span>–30 minipoints (<span class="jap">tsumo</span> only; 300-500) and 2 <span class="jap">han</span>–30 minipoints (<span class="jap">tanyao + tsumo</span>; 500-1000) — giving it the score of 400-700. Therefore, the score for riichi + <span class="jap">pinfu + tsumo</span> (3 <span class="jap">han</span>–20 minipoints; 700-1300) is higher than riichi + <span class="jap">tsumo</span> (2 <span class="jap">han</span>–30 minipoints; 500-1000) but lower than riichi + <span class="jap">tanyao + tsumo</span> (3 <span class="jap">han</span>–30 minipoints; 1000-2000).
+      </span></p>
+  </div>
+  <h2 id="chapter06-h6"><span class="secnum">6.3</span> Advanced scoring</h2>
+  <a id="l-sec-scores2"></a>
+  <p>As I mentioned in the previous section, a hand with one or more concealed set of terminal/honor tiles (or its equivalent) or quads may have unusually high minipoints, calling for an actual calculation of minipoints.</p>
+  <h3 id="chapter06-h7"><span class="secnum">6.3.1</span> Minipoint calculation</h3>
+  <p>Let’s first review the basics of minipoint calculations.
+    All standard hands (i.e., hands with melds) have the base 20 minipoints. Then, we add the following minipoints depending on how we win the hand:<a epub:type="noteref" class="noteref" id="chapter06-fn5-ref" href="#chapter06-fn5">5</a></p>
+  <ul>
+    <li><span class="jap">tsumo</span> (open or closed, except for <span class="jap">pinfu</span>): 2</li>
+    <li><span class="jap">ron</span> (closed): 10</li>
+    <li><span class="jap">ron</span> (open): 0</li>
+  </ul>
+  <p>We add further minipoints for each set and quad in a hand depending on whether it is a concealed one or an open one. Table <a href="chapter06.xhtml#l-tbl-minip_set">6.6</a> summarizes minipoint contributions from a set and a quad.</p>
+  <div class="float">
+    <p><span class="small">
+        <span class="caption"><strong>Table 6.6.</strong> Minipoint contributions from a set and a quad</span> <a id="l-tbl-minip_set"></a></span></p>
+    <table class="grid toprule bottomrule">
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">Tile</td>
+        <td colspan="2" style="text-align:center">Minipoint</td>
+      </tr>
+      <tr class="rule">
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:right">&#160;</td>
+        <td style="text-align:center"><span class="footnotesize">Open</span></td>
+        <td style="text-align:center"><span class="footnotesize">Concealed</span></td>
+      </tr>
+      <tr>
+        <td style="text-align:left">set</td>
+        <td style="text-align:right">simple</td>
+        <td style="text-align:center">2</td>
+        <td style="text-align:center">4</td>
+      </tr>
+      <tr class="rule">
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:right">terminal/honor</td>
+        <td style="text-align:center">4</td>
+        <td style="text-align:center">8</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">quad</td>
+        <td style="text-align:right">simple</td>
+        <td style="text-align:center">8</td>
+        <td style="text-align:center">16</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:right">terminal/honor</td>
+        <td style="text-align:center">16</td>
+        <td style="text-align:center">32</td>
+      </tr>
+    </table>
+  </div>
+  <p>Finally, we add 2 minipoints for each of the following, if any.</p>
+  <ul>
+    <li>Pair of dragon tiles</li>
+    <li>Pair of seat wind tiles</li>
+    <li>Pair of prevailing wind tiles</li>
+    <li>Closed, edge, or single wait</li>
+  </ul>
+  <p>When the head of a hand is of seat wind <em>and</em> prevailing wind (e.g., <span class="LARGE"><span class="tile">🀀︎</span></span> for the East player in the East round), we get 2 + 2 = 4 minipoints.<a epub:type="noteref" class="noteref" id="chapter06-fn6-ref" href="#chapter06-fn6">6</a>
+    If the wait is either side wait or dual <span class="jap">pon</span> wait, we don’t get any minipoint for it.
+    As we saw when we discussed wait patterns in <a href="chapter03.xhtml#l-sec-waits">3.4</a>, we may get different minipoints depending on which of the multiple winning tiles to win on.
+    For example, consider the following hand.</p>
+  <div class="tiles">
+    <div class="tilerow"><span class="tileline"><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀊︎</span><span class="tile">🀋︎</span><span class="tile">🀌︎</span><span class="tile">🀜︎</span><span class="tile">🀜︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span>&#160;<span class="tile">🀒︎</span><span class="tile">🀒︎</span><span class="tile sideways"><span class="turned">🀒︎</span></span></span></div>
+  </div>
+  <p>The hand is waiting for <span class="LARGE"><span class="tile">🀈︎</span>-<span class="tile">🀋︎</span></span>. If we win by <span class="jap">ron</span> on <span class="LARGE"><span class="tile">🀈︎</span></span>, we get no minipoints for the wait and so this hand has 30 minipoints (base 20 + 8 for a concealed set of honors + 2 for an open set of simple = 30). However, if we win this hand on <span class="LARGE"><span class="tile">🀋︎</span></span>, we get additional 2 minipoints for closed wait. This is because <span class="LARGE"><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀊︎</span><span class="tile">🀋︎</span><span class="tile">🀌︎</span></span> can be thought of as <span class="LARGE"><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀋︎</span> + <span class="tile">🀊︎</span><span class="tile">🀌︎</span></span>. Therefore, the hand has 40 minipoints in that case (30 + 2 = 32, rounded up to 40).</p>
+  <h3 id="chapter06-h8"><span class="secnum">6.3.2</span> Scores for 50 minipoints or above</h3>
+  <p>When a hand has one or more concealed set of honor tiles, the hand may have 50 minipoints or above. You may want to memorize the case of 50 minipoints, summarized below.
+    If you are a perfectionist, you may also want to memorize the cases of 70 and 110 minipoints as well, but I can assure you that it would not be worth the effort.</p>
+  <h4><span class="fbox">50 minipoints</span></h4>
+  <p>Scores for 50 minipoints are quite easy to memorize if you have already memorized scores for 25 minipoints (<span class="jap">chiitoitsu</span>), summarized in <a href="chapter06.xhtml#l-tbl-25mp">6.5</a>. Recall that the score for a 1 <span class="jap">han</span>–50 minipoints hand should be the same as that for a 2 <span class="jap">han</span>–25 minipoints hand.</p>
+  <div class="float">
+    <p><span class="small"><span class="caption"><strong>Table 6.7.</strong> Scores for 50 minipoints</span> <a id="l-tbl-50mp"></a></span></p>
+    <table class="grid toprule bottomrule">
+      <tr>
+        <td style="text-align:left"><span class="jap">Han</span></td>
+        <td colspan="2" style="text-align:center"><span class="jap">Ron</span></td>
+        <td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td>
+      </tr>
+      <tr class="rule">
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+      </tr>
+      <tr>
+        <td style="text-align:left">1</td>
+        <td style="text-align:right">1600</td>
+        <td style="text-align:right">2400</td>
+        <td style="text-align:right">400-800</td>
+        <td style="text-align:right">800-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">2</td>
+        <td style="text-align:right">3200</td>
+        <td style="text-align:right">4800</td>
+        <td style="text-align:right">800-1600</td>
+        <td style="text-align:right">1600-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">3</td>
+        <td style="text-align:right">6400</td>
+        <td style="text-align:right">9600</td>
+        <td style="text-align:right">1600-3200</td>
+        <td style="text-align:right">3200-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">4+</td>
+        <td colspan="4" style="text-align:center">limit hand</td>
+      </tr>
+    </table>
+  </div>
+  <h4><span class="fbox">70 minipoints</span></h4>
+  <p>Hands with 70 minipoints do not appear very often (probably once in 20 games or so). Table <a href="chapter06.xhtml#l-tbl-70mp">6.8</a> summarizes scores for 70 minipoints.
+    If you would like to memorize the table, notice that it is sequential (until the end): 23 (non-delaer) → 34 (dealer) → 45 (non-dealer) → 68 (dealer).</p>
+  <div class="float">
+    <p><span class="small"><span class="caption"><strong>Table 6.8.</strong> Scores for 70 minipoints</span> <a id="l-tbl-70mp"></a></span></p>
+    <table class="grid toprule bottomrule">
+      <tr>
+        <td style="text-align:left"><span class="jap">Han</span></td>
+        <td colspan="2" style="text-align:center"><span class="jap">Ron</span></td>
+        <td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td>
+      </tr>
+      <tr class="rule">
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+      </tr>
+      <tr>
+        <td style="text-align:left">1</td>
+        <td style="text-align:right">2300</td>
+        <td style="text-align:right">3400</td>
+        <td style="text-align:right">600-1200</td>
+        <td style="text-align:right">1200-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">2</td>
+        <td style="text-align:right">4500</td>
+        <td style="text-align:right">6800</td>
+        <td style="text-align:right">1200-2300</td>
+        <td style="text-align:right">2300-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">3+</td>
+        <td colspan="4" style="text-align:center">limit hand</td>
+      </tr>
+    </table>
+  </div>
+  <h4><span class="fbox">110 minipoints</span></h4>
+  <p>For the sake of completeness, Table <a href="chapter06.xhtml#l-tbl-110mp">6.9</a> summarizes scores for 110 minipoints.</p>
+  <div class="float">
+    <p><span class="small"><span class="caption"><strong>Table 6.9.</strong> Scores for 110 minipoints</span> <a id="l-tbl-110mp"></a></span></p>
+    <table class="grid toprule bottomrule">
+      <tr>
+        <td style="text-align:left"><span class="jap">Han</span></td>
+        <td colspan="2" style="text-align:center"><span class="jap">Ron</span></td>
+        <td colspan="2" style="text-align:center"><span class="jap">Tsumo</span></td>
+      </tr>
+      <tr class="rule">
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Non-dealer</span></td>
+        <td style="text-align:center"><span class="footnotesize">Dealer</span></td>
+      </tr>
+      <tr>
+        <td style="text-align:left">1</td>
+        <td style="text-align:right">3600</td>
+        <td style="text-align:right">5300</td>
+        <td style="text-align:right">—</td>
+        <td style="text-align:right">—</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">2</td>
+        <td style="text-align:right">7100</td>
+        <td style="text-align:right">10600</td>
+        <td style="text-align:right">1800-3600</td>
+        <td style="text-align:right">3600-all</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">3+</td>
+        <td colspan="4" style="text-align:center">limit hand</td>
+      </tr>
+    </table>
+  </div>
+  <p>110 minipoints occur only in extremely rare occasions. Consider the following hand.</p>
+  <div class="tiles">
+    <div class="tilerow"><span class="tileline"><span class="tile">🀞︎</span><span class="tile">🀟︎</span><span class="tile">🀠︎</span><span class="tile">🀀︎</span><span class="tile">🀀︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span>&#160;<span class="tile">🀫︎</span><span class="tile">🀐︎</span><span class="tile">🀐︎</span><span class="tile">🀫︎</span>&#160;&#160;<span class="tile">🀫︎</span><span class="tile">🀘︎</span><span class="tile">🀘︎</span><span class="tile">🀫︎</span></span></div>
+  </div>
+  <p>Suppose you are in the East round. If the dealer wins this hand by <span class="jap">ron</span> on <span class="LARGE"><span class="tile">🀄︎</span></span>, they get 20 (base) + 10 (closed hand <span class="jap">ron</span>) + 4 (pair of seat &amp; prevailing wind tiles) + 4 (open set of honors) + 32 (concealed quad of terminals) + 32 (concealed quad of terminals) = 102, rounded up to 110 minipoints. The score for 1 <span class="jap">han</span>–110 minipoints is 5300.</p>
+  <p>If they win by <span class="jap">ron</span> on <span class="LARGE"><span class="tile">🀀︎</span></span>, on the other hand, they get more <span class="jap">han</span> (set of seat &amp; prevailing wind) but lower minipoints. This is because the minipoint contribution of the pair of <span class="LARGE"><span class="tile">🀄︎</span></span> (2) is smaller than that of the pair of <span class="LARGE"><span class="tile">🀀︎</span></span> (4). Since the score of 2 <span class="jap">han</span>–100 minipoints hand is the same as that of 3 <span class="jap">han</span>–50 minipoints hand, they obtain 9600 points.</p>
+  <h3 id="chapter06-h9"><span class="secnum">6.3.3</span> Examples</h3>
+  <p>Let’s see how scores change as we advance a hand. For each of the examples below, try calculating the scores for different winning tiles and for <span class="jap">tsumo</span> and <span class="jap">ron</span>.</p>
+  <div class="box">
+    <p class="boxtitle">Scoring 1</p>
+    <div class="tiles">
+      <div class="tilerow"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀋︎</span><span class="tile">🀜︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀟︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span></span></div>
+    </div>
+    <p>What are the scores?</p>
+  </div>
+  <p>If you win this hand by <span class="jap">ron</span>, the hand has 1 <span class="jap">han</span> (Red Dragon) and 40 minipoints: 20 (base) + 10 (closed hand <span class="jap">ron</span>) + 8 (concealed set of honors) = 38, rounded up to 40, so you get 1300 points.</p>
+  <p>If you win it by drawing <span class="LARGE"><span class="tile">🀛︎</span></span>, the hand has an additional <span class="jap">yaku</span>, <span class="jap">menzen tsumo</span> (Fully Concealed Hand), with 30 minipoints: 20 + 8 + 2 (<span class="jap">tsumo</span>) = 30. You thus get 500-1000 <span class="jap">tsumo</span> = 2000 points.</p>
+  <p>However, if you win it by drawing <span class="LARGE"><span class="tile">🀞︎</span></span>, you get 40 minipoints because of the additional 2 minipoints for closed wait: <span class="LARGE"><span class="tile">🀝︎</span><span class="tile">🀟︎</span></span>. You thus get 700-1300 <span class="jap">tsumo</span> = 2700 points.</p>
+  <p>Let’s say you draw <span class="LARGE"><span class="tile">🀝︎</span></span>. What would you discard?</p>
+  <div class="tiles">
+    <div class="tilerow labelled"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀋︎</span><span class="tile">🀜︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀟︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span>&#160;<span class="tile tagged"><span class="tag">Draw</span>🀝︎</span></span></div>
+  </div>
+  <p>If you discard <span class="LARGE"><span class="tile">🀝︎</span></span>, the wait is <span class="LARGE"><span class="tile">🀛︎</span>-<span class="tile">🀞︎</span></span> (2 kinds–7 tiles). If you discard <span class="LARGE"><span class="tile">🀜︎</span></span>, however, you get a 3-way wait: <span class="LARGE"><span class="tile">🀝︎</span>-<span class="tile">🀠︎</span> <span class="tile">🀈︎</span></span> (3 kinds–7 tiles). Let’s say you choose the latter, resulting in the following hand. Now, let’s think about the scores for each winning tile.</p>
+  <div class="box">
+    <p class="boxtitle">Scoring 2</p>
+    <div class="tiles">
+      <div class="tilerow"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀋︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀟︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span></span></div>
+    </div>
+    <p>What are the scores?</p>
+  </div>
+  <p>If you win this hand on <span class="LARGE"><span class="tile">🀈︎</span></span>, the hand is still 1 <span class="jap">han</span>–40 minipoints = 1300. However, if you win on <span class="LARGE"><span class="tile">🀝︎</span></span> or <span class="LARGE"><span class="tile">🀠︎</span></span>, the three tiles of <span class="LARGE"><span class="tile">🀝︎</span></span> within the hand are treated as a concealed set, giving you 4 additional minipoints: 20 (base) + 10 (closed <span class="jap">ron</span>) + 8 (set of <span class="tile">🀄︎</span>) + 4 (set of <span class="tile">🀝︎</span>) = 42, rounded up to 50 minipoints. You thus get 1 <span class="jap">han</span>–50 minipoints = 1600 points. If you win by <span class="jap">tsumo</span>, you get 40 minipoints so you will get 700-1300 = 2700 points.</p>
+  <p>Let’s say you draw <span class="LARGE"><span class="tile">🀉︎</span></span>. What would you discard?</p>
+  <div class="tiles">
+    <div class="tilerow labelled"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀋︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀟︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span>&#160;<span class="tile tagged"><span class="tag">Draw</span>🀉︎</span></span></div>
+  </div>
+  <p>If you discard <span class="LARGE"><span class="tile">🀋︎</span></span>, the wait is <span class="LARGE"><span class="tile">🀇︎</span>-<span class="tile">🀊︎</span></span>. Let’s think about the scores for each winning tile.</p>
+  <div class="box">
+    <p class="boxtitle">Scoring 3</p>
+    <div class="tiles">
+      <div class="tilerow"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀟︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span></span></div>
+    </div>
+    <p>What are the scores?</p>
+  </div>
+  <p>If you win the hand by <span class="jap">ron</span> on <span class="LARGE"><span class="tile">🀊︎</span></span>, you get an additional <span class="jap">yaku</span>, <span class="jap">iipeiko</span> (Pure Double Chow), giving you 2 <span class="jap">han</span>–40 minipoints = 2600 points.</p>
+  <p>If you win the hand by <span class="jap">tsumo</span>, the minipoints are now lower than before because you have side wait and only one concealed set; we cannot think of the three tiles of <span class="LARGE"><span class="tile">🀝︎</span></span> as a set any more. You get 2 <span class="jap">han</span>–30 minipoints if you draw <span class="LARGE"><span class="tile">🀇︎</span></span> (500-1000 <span class="jap">tsumo</span> = 2000), whereas you get 3 <span class="jap">han</span>–30 minipoints if you draw <span class="LARGE"><span class="tile">🀊︎</span></span> (1000-2000 <span class="jap">tsumo</span> = 4000).</p>
+  <p>Let’s say you draw <span class="LARGE"><span class="tile">🀞︎</span></span>. What would you discard?</p>
+  <div class="tiles">
+    <div class="tilerow labelled"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀟︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span>&#160;<span class="tile tagged"><span class="tag">Draw</span>🀞︎</span></span></div>
+  </div>
+  <p>Discarding <span class="LARGE"><span class="tile">🀟︎</span></span> is the best option. To understand why, let’s think about the scores.</p>
+  <div class="box">
+    <p class="boxtitle">Scoring 4</p>
+    <div class="tiles">
+      <div class="tilerow"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀞︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span></span></div>
+    </div>
+    <p>What are the scores?</p>
+  </div>
+  <p>Notice that the wait and the potential <span class="jap">han</span> counts did not change at all. However, you get increased minipoints because you now have the concealed set of <span class="LARGE"><span class="tile">🀝︎</span></span> back again. You will get 2 <span class="jap">han</span>–50 minipoints = 3200 points if you win by <span class="jap">ron</span> on <span class="LARGE"><span class="tile">🀊︎</span></span>. If you draw <span class="LARGE"><span class="tile">🀊︎</span></span>, you will get 3 <span class="jap">han</span>–40 minipoints, giving you 1300-2600 <span class="jap">tsumo</span> = 5200 points.</p>
+  <p>Let’s say you draw another <span class="LARGE"><span class="tile">🀞︎</span></span>. What would you discard?</p>
+  <div class="tiles">
+    <div class="tilerow labelled"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀉︎</span><span class="tile">🀊︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀞︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span>&#160;<span class="tile tagged"><span class="tag">Draw</span>🀞︎</span></span></div>
+  </div>
+  <p>The best discard is <span class="LARGE"><span class="tile">🀊︎</span></span>, which makes this hand a <span class="jap">toitoi</span> (All Pungs) hand, as follows.</p>
+  <div class="box">
+    <p class="boxtitle">Scoring 5</p>
+    <div class="tiles">
+      <div class="tilerow"><span class="tileline"><span class="tile">🀈︎</span><span class="tile">🀈︎</span><span class="tile">🀉︎</span><span class="tile">🀉︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀝︎</span><span class="tile">🀞︎</span><span class="tile">🀞︎</span><span class="tile">🀞︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span><span class="tile">🀄︎</span></span></div>
+    </div>
+    <p>What are the scores?</p>
+  </div>
+  <p>The hand has three concealed sets already, giving you at least <span class="jap">san anko</span> (Three Concealed Pungs) in addition to <span class="jap">toitoi</span> and Red Dragon. Now you no longer need any tedious minipoints calculation. If you win this hand by <span class="jap">tsumo</span>, it is <span class="jap">yakuman</span> (<span class="jap">su anko</span>; Four Concealed Pungs). If you win it by <span class="jap">ron</span>, you get five <span class="jap">han</span> (<span class="jap">toitoi</span>, <span class="jap">san anko</span>, and Red Dragon); it is <span class="jap">mangan</span> regardless of minipoints.</p>
+  <h2 id="chapter06-h10"><span class="secnum">6.4</span> Scoring tables</h2>
+  <div class="float">
+    <p><span class="footnotesize">
+        <span class="caption"><strong>Table 6.10.</strong> Scores for non-dealer</span> <a id="l-tbl-scores1"></a></span></p>
+    <table class="grid toprule bottomrule">
+      <tr class="rule">
+        <td style="text-align:left">Minipoints</td>
+        <td style="text-align:center">1 <span class="jap">han</span></td>
+        <td style="text-align:center">2 <span class="jap">han</span></td>
+        <td style="text-align:center">3 <span class="jap">han</span></td>
+        <td style="text-align:center">4 <span class="jap">han</span></td>
+      </tr>
+      <tr>
+        <td style="text-align:left">20</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">—</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">(400-700)</td>
+        <td style="text-align:center">(700-1300)</td>
+        <td style="text-align:center">(1300-2600)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">25</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">1600</td>
+        <td style="text-align:center">3200</td>
+        <td style="text-align:center">6400</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">(800-1600)</td>
+        <td style="text-align:center">(1600-3200)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">30</td>
+        <td style="text-align:center">1000</td>
+        <td style="text-align:center">2000</td>
+        <td style="text-align:center">3900</td>
+        <td style="text-align:center">7700</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(300-500)</td>
+        <td style="text-align:center">(500-1000)</td>
+        <td style="text-align:center">(1000-2000)</td>
+        <td style="text-align:center">(2000-3900)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">40</td>
+        <td style="text-align:center">1300</td>
+        <td style="text-align:center">2600</td>
+        <td style="text-align:center">5200</td>
+        <td style="text-align:center">8000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(400-700)</td>
+        <td style="text-align:center">(700-1300)</td>
+        <td style="text-align:center">(1300-2600)</td>
+        <td style="text-align:center">(2000-4000)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">50</td>
+        <td style="text-align:center">1600</td>
+        <td style="text-align:center">3200</td>
+        <td style="text-align:center">6400</td>
+        <td style="text-align:center">8000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(400-800)</td>
+        <td style="text-align:center">(800-1600)</td>
+        <td style="text-align:center">(1600-3200)</td>
+        <td style="text-align:center">(2000-4000)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">60</td>
+        <td style="text-align:center">2000</td>
+        <td style="text-align:center">3900</td>
+        <td style="text-align:center">7700</td>
+        <td style="text-align:center">8000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(500-1000)</td>
+        <td style="text-align:center">(1000-2000)</td>
+        <td style="text-align:center">(2000-3900)</td>
+        <td style="text-align:center">(2000-4000)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">70</td>
+        <td style="text-align:center">2300</td>
+        <td style="text-align:center">4500</td>
+        <td style="text-align:center">8000</td>
+        <td style="text-align:center">8000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(600-1200)</td>
+        <td style="text-align:center">(1200-2300)</td>
+        <td style="text-align:center">(2000-4000)</td>
+        <td style="text-align:center">(2000-4000)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">80</td>
+        <td style="text-align:center">2600</td>
+        <td style="text-align:center">5200</td>
+        <td style="text-align:center">8000</td>
+        <td style="text-align:center">8000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(700-1300)</td>
+        <td style="text-align:center">(1300-2600)</td>
+        <td style="text-align:center">(2000-4000)</td>
+        <td style="text-align:center">(2000-4000)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">90</td>
+        <td style="text-align:center">2900</td>
+        <td style="text-align:center">5800</td>
+        <td style="text-align:center">8000</td>
+        <td style="text-align:center">8000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(800-1500)</td>
+        <td style="text-align:center">(1500-2900)</td>
+        <td style="text-align:center">(2000-4000)</td>
+        <td style="text-align:center">(2000-4000)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">100</td>
+        <td style="text-align:center">3200</td>
+        <td style="text-align:center">6400</td>
+        <td style="text-align:center">8000</td>
+        <td style="text-align:center">8000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(800-1600)</td>
+        <td style="text-align:center">(1600-3200)</td>
+        <td style="text-align:center">(2000-4000)</td>
+        <td style="text-align:center">(2000-4000)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">110</td>
+        <td style="text-align:center">3600</td>
+        <td style="text-align:center">7100</td>
+        <td style="text-align:center">8000</td>
+        <td style="text-align:center">8000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">(1800-3600)</td>
+        <td style="text-align:center">(2000-4000)</td>
+        <td style="text-align:center">(2000-4000)</td>
+      </tr>
+    </table>
+    <p><span class="footnotesize"><br />
+        <em>Note:</em> Numbers in parentheses are <span class="jap">tsumo</span> scores.
+      </span></p>
+  </div>
+  <div class="float">
+    <p><span class="small">
+        <span class="caption"><strong>Table 6.11.</strong> Scores for dealer</span> <a id="l-tbl-scores2"></a></span></p>
+    <table class="grid toprule bottomrule">
+      <tr class="rule">
+        <td style="text-align:left">Minipoints</td>
+        <td style="text-align:center">1 <span class="jap">han</span></td>
+        <td style="text-align:center">2 <span class="jap">han</span></td>
+        <td style="text-align:center">3 <span class="jap">han</span></td>
+        <td style="text-align:center">4 <span class="jap">han</span></td>
+      </tr>
+      <tr>
+        <td style="text-align:left">20</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">—</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">(700)</td>
+        <td style="text-align:center">(1300)</td>
+        <td style="text-align:center">(2600)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">25</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">2400</td>
+        <td style="text-align:center">4800</td>
+        <td style="text-align:center">9600</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">(1600)</td>
+        <td style="text-align:center">(3200)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">30</td>
+        <td style="text-align:center">1500</td>
+        <td style="text-align:center">2900</td>
+        <td style="text-align:center">5800</td>
+        <td style="text-align:center">11600</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(500)</td>
+        <td style="text-align:center">(1000)</td>
+        <td style="text-align:center">(2000)</td>
+        <td style="text-align:center">(3900)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">40</td>
+        <td style="text-align:center">2000</td>
+        <td style="text-align:center">3900</td>
+        <td style="text-align:center">7700</td>
+        <td style="text-align:center">12000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(700)</td>
+        <td style="text-align:center">(1300)</td>
+        <td style="text-align:center">(2600)</td>
+        <td style="text-align:center">(4000)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">50</td>
+        <td style="text-align:center">2400</td>
+        <td style="text-align:center">4800</td>
+        <td style="text-align:center">9600</td>
+        <td style="text-align:center">12000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(800)</td>
+        <td style="text-align:center">(1600)</td>
+        <td style="text-align:center">(3200)</td>
+        <td style="text-align:center">(4000)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">60</td>
+        <td style="text-align:center">2900</td>
+        <td style="text-align:center">5800</td>
+        <td style="text-align:center">11600</td>
+        <td style="text-align:center">12000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(1000)</td>
+        <td style="text-align:center">(2000)</td>
+        <td style="text-align:center">(3900)</td>
+        <td style="text-align:center">(4000)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">70</td>
+        <td style="text-align:center">3400</td>
+        <td style="text-align:center">6800</td>
+        <td style="text-align:center">12000</td>
+        <td style="text-align:center">12000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(1200)</td>
+        <td style="text-align:center">(2300)</td>
+        <td style="text-align:center">(4000)</td>
+        <td style="text-align:center">(4000)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">80</td>
+        <td style="text-align:center">3900</td>
+        <td style="text-align:center">7700</td>
+        <td style="text-align:center">12000</td>
+        <td style="text-align:center">12000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(1300)</td>
+        <td style="text-align:center">(2600)</td>
+        <td style="text-align:center">(4000)</td>
+        <td style="text-align:center">(4000)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">90</td>
+        <td style="text-align:center">4400</td>
+        <td style="text-align:center">8700</td>
+        <td style="text-align:center">12000</td>
+        <td style="text-align:center">12000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(1500)</td>
+        <td style="text-align:center">(2900)</td>
+        <td style="text-align:center">(4000)</td>
+        <td style="text-align:center">(4000)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">100</td>
+        <td style="text-align:center">4800</td>
+        <td style="text-align:center">9600</td>
+        <td style="text-align:center">12000</td>
+        <td style="text-align:center">12000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">(1600)</td>
+        <td style="text-align:center">(3200)</td>
+        <td style="text-align:center">(4000)</td>
+        <td style="text-align:center">(4000)</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">110</td>
+        <td style="text-align:center">5300</td>
+        <td style="text-align:center">10600</td>
+        <td style="text-align:center">12000</td>
+        <td style="text-align:center">12000</td>
+      </tr>
+      <tr>
+        <td style="text-align:left">&#160;</td>
+        <td style="text-align:center">—</td>
+        <td style="text-align:center">(3600)</td>
+        <td style="text-align:center">(4000)</td>
+        <td style="text-align:center">(4000)</td>
+      </tr>
+    </table>
+    <p><span class="small"><br />
+        <em>Note:</em> Numbers in parentheses are <span class="jap">tsumo</span> scores.
+      </span></p>
+  </div>
+  <section class="footnotes" epub:type="footnotes">
+    <hr />
+    <aside epub:type="footnote" id="chapter06-fn1">
+      <p><a href="#chapter06-fn1-ref">1</a> In my impression, roughly 75 % of the hands we encounter can be covered by the basic methods.</p>
+    </aside>
+    <aside epub:type="footnote" id="chapter06-fn2">
+      <p><a href="#chapter06-fn2-ref">2</a> Since <span class="jap">bai</span> means “twice” or “double” in Japanese, <span class="jap">baiman</span> literally means double <span class="jap">mangan</span> in Japanese. Similarly, <span class="jap">sanbai</span> means “triple,” so <span class="jap">sanbaiman</span> literally means triple <span class="jap">mangan</span>.</p>
+    </aside>
+    <aside epub:type="footnote" id="chapter06-fn3">
+      <p><a href="#chapter06-fn3-ref">3</a> Note that we are only talking about open <span class="jap">toitoi</span> here. A closed <span class="jap">toitoi</span> does not require a minipoint calculation under any circumstance. If you win it by <span class="jap">tsumo</span>, it’s <span class="jap">yakuman</span> (<span class="jap">su anko</span>; Four Concealed Pungs); if you win it by <span class="jap">ron</span>, it’s at least <span class="jap">mangan</span> (<span class="jap">toitoi</span> and <span class="jap">san anko</span>).</p>
+    </aside>
+    <aside epub:type="footnote" id="chapter06-fn4">
+      <p><a href="#chapter06-fn4-ref">4</a> Of course, one cannot claim <span class="jap">pinfu</span> with an open hand. What we mean by “open <span class="jap">pinfu</span>” here is that the hand shape satisfies the conditions for <span class="jap">pinfu</span>.</p>
+    </aside>
+    <aside epub:type="footnote" id="chapter06-fn5">
+      <p><a href="#chapter06-fn5-ref">5</a> As mentioned, there are two exceptions to this calculation rule. First, it is decided that <span class="jap">pinfu</span> <span class="jap">tsumo</span> is <em>always</em> 20 minipoints. Second, the so-called “open <span class="jap">pinfu</span> hand is <em>always</em> 30 minipoints whether <span class="jap">ron</span> or <span class="jap">tsumo</span>.</p>
+    </aside>
+    <aside epub:type="footnote" id="chapter06-fn6">
+      <p><a href="#chapter06-fn6-ref">6</a> This is the case with EMA rules and <span class="jap">Tenhou</span> rules, but this is not a universally adopted rule.</p>
+    </aside>
+  </section>
 </body>
+
 </html>
