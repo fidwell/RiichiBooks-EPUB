@@ -17,15 +17,15 @@ body.cover {
 
 body.cover img {
   max-width: 100%;
-  max-height: 100vh;
+  max-height: 100%;
 }
 
 h1 {
   font-size: 1.7em;
-  text-align: left;
-  margin: 1.5em 0 1em;
   line-height: 1.2;
+  margin: 1.5em 0 1em;
   page-break-before: always;
+  text-align: left;
 }
 
 h1 .chapnum {
@@ -38,9 +38,9 @@ h1 .chapnum {
 
 h2 {
   font-size: 1.25em;
-  text-align: center;
   margin: 1.6em 0 0.8em;
   page-break-after: avoid;
+  text-align: center;
 }
 
 h3 {
@@ -78,21 +78,13 @@ a {
 
 .noteref {
   font-size: 0.75em;
-  vertical-align: super;
   line-height: 0;
+  vertical-align: super;
 }
 
 .jap {
-  font-family: "Courier New", Courier, monospace;
+  font-family: monospace;
   font-size: 0.92em;
-}
-
-.scshape {
-  font-variant: small-caps;
-}
-
-.tiny {
-  font-size: 0.65em;
 }
 
 .scriptsize {
@@ -113,31 +105,36 @@ a {
 
 .large {
   font-size: 1.1em;
+  line-height: 1;
 }
 
 .Large {
   font-size: 1.3em;
+  line-height: 1;
 }
 
 .LARGE {
   font-size: 1.57em;
+  line-height: 1;
 }
 
 .huge {
   font-size: 1.89em;
+  line-height: 1;
 }
 
 .Huge {
   font-size: 2.26em;
+  line-height: 1;
 }
 
 .tile {
   font-family: "Mahjong Tiles", "Segoe UI Symbol", "Noto Sans Symbols 2", sans-serif;
   font-size: 1.15em;
-  line-height: 1;
-  white-space: nowrap;
   font-style: normal;
   font-weight: normal;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .tile.red {
@@ -146,32 +143,28 @@ a {
 
 .tile.sideways {
   display: inline-block;
+  height: 0.6em;
   position: relative;
   width: 0.75em;
-  height: 0.6em;
 }
 
 .tile.sideways .turned {
   position: absolute;
-  left: 0.0735em;
-  top: -0.086em;
-  width: 0.603em;
-  height: 1em;
-  transform-origin: 0.3015em 0.386em;
-  transform: rotate(-90deg);
+  transform-origin: 60% 40%;
+  transform: rotate(90deg);
 }
 
 .tiles {
   text-align: center;
-  margin: 0.8em 0;
+  margin: 0.4em 0;
   font-size: 2.1em;
   line-height: 1.25;
 }
 
 .tilerow {
   display: inline-block;
-  text-align: left;
   max-width: 100%;
+  text-align: left;
 }
 
 .tileline {
@@ -183,8 +176,8 @@ a {
 }
 
 .tag.above {
-  top: auto;
   bottom: 82%;
+  top: auto;
 }
 
 .tag.red {
@@ -196,29 +189,21 @@ a {
 }
 
 .tag {
+  font-family: serif;
+  font-size: 0.3em;
+  font-style: normal;
+  left: 50%;
+  line-height: 1.2;
   position: absolute;
   top: 82%;
-  left: 50%;
   transform: translateX(-50%);
-  font-size: 0.4em;
-  line-height: 1.2;
   white-space: nowrap;
-  font-family: serif;
-  font-style: normal;
-}
-
-.tilelabel {
-  display: block;
-  text-align: right;
-  font-size: 0.5em;
-  line-height: 1.2;
-  font-family: serif;
 }
 
 .rotated {
   display: inline-block;
-  white-space: nowrap;
   margin: 0.4em 0.2em;
+  white-space: nowrap;
 }
 
 .raised {
@@ -226,7 +211,7 @@ a {
 }
 
 .tiles .tile {
-  font-size: 1em;
+  font-size: 1.5em;
 }
 
 .tiles .large {
@@ -253,7 +238,6 @@ a {
   font-size: 0.36em;
 }
 
-.tiny .tiny,
 .scriptsize .scriptsize,
 .footnotesize .footnotesize,
 .small .small,
@@ -273,25 +257,25 @@ a {
 
 table.grid .Huge,
 table.grid .LARGE {
-  font-size: 1.45em;
+  font-size: 1.8em;
 }
 
 .display {
-  text-align: center;
   margin: 1em 0;
+  text-align: center;
 }
 
 .underbrace {
   display: inline-block;
-  vertical-align: top;
-  text-align: center;
   margin: 0 0.1em;
+  text-align: center;
+  vertical-align: top;
 }
 
 .ubcontent {
-  display: block;
   border-bottom: 2px solid;
   border-radius: 0 0 0.6em 0.6em;
+  display: block;
   padding-bottom: 0.1em;
 }
 
@@ -304,23 +288,19 @@ table.grid .LARGE {
   text-align: center;
 }
 
-.center p {
-  text-align: center;
-}
-
 .box {
   border: 1px solid #555;
   border: 1px solid var(--accent, #555);
-  border-radius: 0.3em;
-  padding: 0.2em 0.8em;
+  border-radius: 1em;
   margin: 1em 0;
+  padding: 0.2em 0.8em;
 }
 
 .boxtitle {
   font-weight: bold;
-  margin: 0.4em 0;
   color: inherit;
   color: var(--accent, inherit);
+  margin: 0.4em 0;
 }
 
 .float {
@@ -335,9 +315,9 @@ table.grid .LARGE {
 
 .minipage {
   display: inline-block;
+  text-align: center;
   vertical-align: top;
   width: 48%;
-  text-align: center;
 }
 
 .caption {
@@ -348,8 +328,8 @@ table.grid .LARGE {
 
 table.grid {
   border-collapse: collapse;
-  margin: 0.8em auto;
   font-size: 0.95em;
+  margin: 0.8em auto;
 }
 
 table.grid td {
@@ -401,16 +381,16 @@ img {
 }
 
 .overpic {
-  position: relative;
   margin: 0 auto;
+  position: relative;
 }
 
 .overpic svg {
-  position: absolute;
+  height: 100%;
   left: 0;
+  position: absolute;
   top: 0;
   width: 100%;
-  height: 100%;
 }
 
 .overpic img {
@@ -423,15 +403,15 @@ img {
 }
 
 .titlepage {
-  text-align: right;
   margin: 18% 0 10%;
+  text-align: right;
 }
 
 .booktitle {
-  text-align: right;
   font-size: 2.4em;
-  page-break-before: auto;
   margin-bottom: 0.2em;
+  page-break-before: auto;
+  text-align: right;
 }
 
 .subtitle {
@@ -439,29 +419,29 @@ img {
 }
 
 .version {
-  margin-top: 2.5em;
   font-size: 1.1em;
+  margin-top: 2.5em;
 }
 
 .author {
-  margin-top: 1.5em;
   font-size: 1.3em;
+  margin-top: 1.5em;
 }
 
 .copyright {
-  font-size: 0.9em;
   margin-top: 3em;
+  font-size: 0.9em;
 }
 
 .parttitle {
-  text-align: center;
   margin: 30% 0 0;
+  text-align: center;
 }
 
 .parttitle h1 {
-  text-align: center;
-  page-break-before: auto;
   font-variant: small-caps;
+  page-break-before: auto;
+  text-align: center;
 }
 
 .partnumber {
