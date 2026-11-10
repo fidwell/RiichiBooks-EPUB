@@ -141,15 +141,9 @@ a {
 
 .tile.sideways {
   display: inline-block;
-  height: 0.6em;
-  position: relative;
-  width: 0.75em;
-}
-
-.tile.sideways .turned {
-  position: absolute;
-  transform-origin: 60% 40%;
+  transform-origin: 0.3015em 0.386em;
   transform: rotate(90deg);
+  margin: 0 0.06em;
 }
 
 .tiles {
