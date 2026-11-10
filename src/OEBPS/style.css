@@ -309,6 +309,7 @@ table.grid .LARGE {
 }
 
 .box {
+  border: 1px solid #555;
   border: 1px solid var(--accent, #555);
   border-radius: 0.3em;
   padding: 0.2em 0.8em;
@@ -318,6 +319,7 @@ table.grid .LARGE {
 .boxtitle {
   font-weight: bold;
   margin: 0.4em 0;
+  color: inherit;
   color: var(--accent, inherit);
 }
 

@@ -2,12 +2,12 @@
 <package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="book-id"
     xml:lang="en">
     <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
-        <dc:identifier id="book-id">urn:uuid:64b058b4-94f8-20a6-c056-681213ed32a9</dc:identifier>
+        <dc:identifier id="book-id">urn:uuid:cf97d7a3-2c3a-46ca-a324-c2ebb8fa74b9</dc:identifier>
         <dc:title>Riichi Book I: A Mahjong Strategy Primer for European Players</dc:title>
         <dc:creator>Daina Chiba</dc:creator>
         <dc:language>en</dc:language>
         <dc:rights>Creative Commons Attribution NonCommercial 3.0 Unported License</dc:rights>
-        <meta property="dcterms:modified">2026-11-09T23:31:00Z</meta>
+        <meta property="dcterms:modified">2026-11-10T00:03:27Z</meta>
         <meta name="cover" content="img49" />
     </metadata>
     <manifest>
@@ -107,7 +107,4 @@
         <itemref idref="page16" />
         <itemref idref="page17" />
     </spine>
-    <guide>
-        <reference type="cover" title="Cover" href="cover.xhtml" />
-    </guide>
 </package>
