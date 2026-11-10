@@ -464,3 +464,9 @@ img {
 .footnotes p {
   margin: 0.3em 0;
 }
+
+img.stick {
+  height:auto;
+  max-width:100%;
+  width:6.57em;
+}
