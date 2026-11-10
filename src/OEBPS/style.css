@@ -299,6 +299,10 @@ table.grid .LARGE {
   break-before: page;
 }
 
+.box.red {
+  --accent: #ca0020;
+}
+
 .boxtitle {
   font-weight: bold;
   color: inherit;
