@@ -7,7 +7,7 @@
         <dc:creator>Daina Chiba</dc:creator>
         <dc:language>en</dc:language>
         <dc:rights>Creative Commons Attribution NonCommercial 3.0 Unported License</dc:rights>
-        <meta property="dcterms:modified">2026-11-10T17:52:28Z</meta>
+        <meta property="dcterms:modified">2026-11-18T03:20:10Z</meta>
         <meta name="cover" content="img49" />
     </metadata>
     <manifest>
@@ -35,6 +35,31 @@
         <item id="page15" href="part4.xhtml" media-type="application/xhtml+xml" />
         <item id="page16" href="appendix1.xhtml" media-type="application/xhtml+xml" />
         <item id="page17" href="appendix2.xhtml" media-type="application/xhtml+xml" />
+        <item id="sw-u1f000" href="images/sideways/U+1F000.png" media-type="image/png"/>
+        <item id="sw-u1f001" href="images/sideways/U+1F001.png" media-type="image/png"/>
+        <item id="sw-u1f003" href="images/sideways/U+1F003.png" media-type="image/png"/>
+        <item id="sw-u1f004" href="images/sideways/U+1F004.png" media-type="image/png"/>
+        <item id="sw-u1f005" href="images/sideways/U+1F005.png" media-type="image/png"/>
+        <item id="sw-u1f006" href="images/sideways/U+1F006.png" media-type="image/png"/>
+        <item id="sw-u1f009" href="images/sideways/U+1F009.png" media-type="image/png"/>
+        <item id="sw-u1f00a" href="images/sideways/U+1F00A.png" media-type="image/png"/>
+        <item id="sw-u1f00e" href="images/sideways/U+1F00E.png" media-type="image/png"/>
+        <item id="sw-u1f00f" href="images/sideways/U+1F00F.png" media-type="image/png"/>
+        <item id="sw-u1f010" href="images/sideways/U+1F010.png" media-type="image/png"/>
+        <item id="sw-u1f011" href="images/sideways/U+1F011.png" media-type="image/png"/>
+        <item id="sw-u1f012" href="images/sideways/U+1F012.png" media-type="image/png"/>
+        <item id="sw-u1f013" href="images/sideways/U+1F013.png" media-type="image/png"/>
+        <item id="sw-u1f014" href="images/sideways/U+1F014.png" media-type="image/png"/>
+        <item id="sw-u1f015" href="images/sideways/U+1F015.png" media-type="image/png"/>
+        <item id="sw-u1f016" href="images/sideways/U+1F016.png" media-type="image/png"/>
+        <item id="sw-u1f018" href="images/sideways/U+1F018.png" media-type="image/png"/>
+        <item id="sw-u1f019" href="images/sideways/U+1F019.png" media-type="image/png"/>
+        <item id="sw-u1f01a" href="images/sideways/U+1F01A.png" media-type="image/png"/>
+        <item id="sw-u1f01b" href="images/sideways/U+1F01B.png" media-type="image/png"/>
+        <item id="sw-u1f01c" href="images/sideways/U+1F01C.png" media-type="image/png"/>
+        <item id="sw-u1f01d" href="images/sideways/U+1F01D.png" media-type="image/png"/>
+        <item id="sw-u1f01e" href="images/sideways/U+1F01E.png" media-type="image/png"/>
+        <item id="sw-u1f020" href="images/sideways/U+1F020.png" media-type="image/png"/>
         <item id="img0" href="images/Tenhou_logo_raw_wb.jpg" media-type="image/jpeg" />
         <item id="img1" href="images/tenhou0.jpg" media-type="image/jpeg" />
         <item id="img2" href="images/tenhou1.jpg" media-type="image/jpeg" />
